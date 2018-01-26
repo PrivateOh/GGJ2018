@@ -10,7 +10,7 @@ import fisica.*;
 public static final int COLOR_BK = 0;
 
 // World
-FWorld m_world;
+public FWorld m_world;
 
 void setup() {
   fullScreen();
@@ -22,12 +22,13 @@ void setup() {
 
 void draw() {
   background(COLOR_BK);
-  m_world.step();
-  m_world.draw();
+  this.m_world.step();
+  this.m_world.draw();
 }
 
 /* Create the world and init his parameters */
 void initWorld() {
   this.m_world = new FWorld();
   this.m_world.setGravity(0, 0);
+  createLevel(1);
 }
