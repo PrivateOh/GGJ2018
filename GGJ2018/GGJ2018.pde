@@ -1,16 +1,26 @@
 import fisica.*;
 
+public static final int COLOR_BK = 0;
+
 // World
-FWorld world;
+FWorld m_world;
 
 void setup() {
- smooth();
- Fisica.init(this);
- this.world = new FWorld();
+  fullScreen();
+  smooth();
+
+  Fisica.init(this);
+  this.initWorld();
 }
 
 void draw() {
-  background(255);
-  world.draw();
-  world.step();
+  background(COLOR_BK);
+  m_world.step();
+  m_world.draw();
+}
+
+/* Create the world and init his parameters */
+void initWorld() {
+  this.m_world = new FWorld();
+  this.m_world.setGravity(0, 0);
 }
