@@ -26,9 +26,15 @@ void draw() {
   this.m_world.draw();
 }
 
-/* Create the world and init his parameters */
+/* Create the world and init parameters */
 void initWorld() {
   this.m_world = new FWorld();
   this.m_world.setGravity(0, 0);
-  createLevel(1);
+  this.loadLevel(1);
+}
+
+/* Load the level passed in parameter */
+void loadLevel(int number) {
+  this.m_world.clear();
+  createLevel(number);
 }
