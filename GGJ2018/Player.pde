@@ -1,9 +1,13 @@
 class Player  extends Entity {
 
   private Boolean isAlive;
-  public Player(Coord coord, int id) {
+  private FCircle player;
+  public Player(Coord coord, int id, float size) {
     super (coord, id);
     this.isAlive = true;
+    player = new FCircle(size);
+    player.setPosition(this.getCoord().getX(),this.getCoord().getY());
+    m_world.add(player);
   }
 
   public Boolean getIsAlive () {

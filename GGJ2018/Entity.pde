@@ -1,4 +1,4 @@
-class Entity  extends FBody{
+class Entity {
 
   private Coord coord;
   private int id;
@@ -8,5 +8,8 @@ class Entity  extends FBody{
   }
   public int getId () {
     return this.id;
+  }
+  public Coord getCoord () {
+    return this.coord;
   }
 }

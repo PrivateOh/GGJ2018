@@ -18,6 +18,7 @@ void setup() {
 
   Fisica.init(this);
   this.initWorld();
+  Player p = new Player(new Coord(100.0,100.0), 1, 10);
 }
 
 void draw() {
