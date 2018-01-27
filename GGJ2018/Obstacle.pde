@@ -1,4 +1,4 @@
-  class Obstacle {
+  class Obstacle{
 
   private FPoly obstacle;
   private JSONObject json;
@@ -17,7 +17,7 @@
 
   void drawObstacle() {
 
-    texture = loadImage("/data/textures/" + type + ".jpeg");
+    //²texture = loadImage("/data/textures/" + type + ".jpeg");
 
     json = loadJSONObject("obstacles.json");
 
@@ -65,5 +65,9 @@
 
   String getType() {
     return this.type;
+  }
+  
+  FBody getObstacle(){
+    return this.obstacle;
   }
 }

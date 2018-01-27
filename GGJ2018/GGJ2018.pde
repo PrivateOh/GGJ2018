@@ -12,6 +12,7 @@ public Player player = null;
 public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
 public int currentLevel;
+public ArrayList<Obstacle> m_obstacles;
 
 // World
 public FWorld m_world;
@@ -23,6 +24,7 @@ void setup() {
   Fisica.init(this);
   noCursor();
   this.m_ennemys = new ArrayList<Ennemy>();
+  this.m_obstacles = new ArrayList<Obstacle>();
   this.initWorld();
   this.loadLevel(1);
 }
@@ -75,6 +77,6 @@ void keyReleased() {
 
 void drawCursor () {
   stroke(255);
-  line(mouseX+8,mouseY,mouseX-8,mouseY);
-  line(mouseX,mouseY+8,mouseX,mouseY-8);
+  line(mouseX+8, mouseY, mouseX-8, mouseY);
+  line(mouseX, mouseY+8, mouseX, mouseY-8);
 }
