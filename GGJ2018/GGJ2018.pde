@@ -9,6 +9,9 @@ import fisica.*;
 
 public static final int COLOR_BK = 0;
 
+// Player of the current level
+public Player player = null;
+
 // World
 public FWorld m_world;
 
