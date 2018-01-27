@@ -39,6 +39,11 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
     FRaycastResult result = new FRaycastResult();
     FBody b = m_world.raycastOne(this.player.getX(), this.player.getY(), mouseX, mouseY, result, false);
     if (b != null) {
+      for (Obstacle obs : m_obstacles) {
+        if (obs.getObstacle().equals(b)) {
+          println(obs.getType());
+        }
+      }
     }
   }
 
