@@ -1,17 +1,22 @@
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
 
   private Boolean isAlive;
   private FCircle player;
   private Coord force;
+  private int rushRange = 350;
+  private int cptChangeDirection = 0;
+  private Coord coordToRush;
+  private boolean possed = false;
+  private boolean isRushing = false;
   public Player(Coord coord, int id, float size) {
     super(coord, id);
     this.isAlive = true;
 
     this.force = new Coord(0, 0);
+    this.coordToRush = new Coord (0, 0);
     this.player = new FCircle(size);
     this.player.setGrabbable(false);
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
-    //this.player.setStatic(true);
     m_world.add(this.player);
   }
 
@@ -48,9 +53,16 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
   }
 
   public void draw () {
+    if (this.possed == true) {
+      player.setDrawable(false);
+    } else {
+      player.setDrawable(true);
+    }
     noFill();
     stroke(25);
-    ellipse(this.player.getX(), this.player.getY(), 240, 240);
+    ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
+    if (this.isRushing)
+      rushing();
   }
 
   public void keyPressed(int keyCode) {
@@ -91,22 +103,57 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
   }
 
   public void rushTo (Coord coord) {
-    while ( coord.getX() != this.player.getX() && coord.getY() != this.player.getY()) {
-      if ( coord.getX()-this.player.getX() > 0) {
-        this.setForceX(1500);
-      } else {
-        if (coord.getX()-this.player.getX() < 0) {
-          this.setForceX(-1500);
-        } else
-          this.setForceX(0);
+    this.isRushing = true;
+    this.coordToRush.setX(coord.getX());
+    this.coordToRush.setY(coord.getY());
+  }
+
+  public void rushing () {
+    if ( this.coordToRush.getX()-this.player.getX() < -10 ) {
+      if (this.force.getX() != -1300)
+        cptChangeDirection++;
+      this.setForceX(-1300);
+    } else {
+      if (this.coordToRush.getX()-this.player.getX() > 10) {
+        if (this.force.getX() != 1300)
+          cptChangeDirection++;
+        this.setForceX(1300);
+      } else
+        this.setForceX(0);
+    }
+    if ( this.coordToRush.getY()-this.player.getY() < -10) {
+      if (this.force.getY() != -1300)
+        cptChangeDirection++;
+      this.setForceY(-1300);
+    } else {
+      if (this.coordToRush.getY()-this.player.getY() > 10) {
+        if (this.force.getY() != 1300)
+          cptChangeDirection++;
+        this.setForceY(1300);
+      } else
+        this.setForceY(0);
+    }
+    this.updateForce();
+    if ((this.force.getX() == 0 && this.force.getY() == 0) || this.cptChangeDirection > 4)
+    {
+      this.setForceY(0);
+      this.setForceX(0);
+      this.updateForce();
+      this.isRushing = false;
+      this.possed = !this.possed;
+      this.cptChangeDirection = 0;
+    }
+  }
+
+  void mousePressed() {
+    if (this.possed == false) {
+      if (abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2) {
+        this.rushTo(new Coord(mouseX, mouseY));
       }
-      if ( coord.getY()-this.player.getY() > 0) {
-        this.setForceY(1500);
-      } else {
-        if (coord.getY()-this.player.getY() < 0) {
-          this.setForceY(-1500);
-        } else
-          this.setForceY(0);
+    } else
+    {
+      if (abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2) {
+        this.rushTo(new Coord(mouseX, mouseY));
       }
     }
   }

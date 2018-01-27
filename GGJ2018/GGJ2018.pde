@@ -78,6 +78,13 @@ void keyReleased() {
   }
 }
 
+void mousePressed() {
+  if (this.player != null)
+  {
+    this.player.mousePressed();
+  }
+}
+
 void drawCursor () {
   stroke(255);
   line(mouseX+8, mouseY, mouseX-8, mouseY);
