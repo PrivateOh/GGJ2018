@@ -1,10 +1,10 @@
-class Player  extends Entity { //<>// //<>// //<>// //<>//
+class Player  extends Entity { //<>//
 
   private boolean isAlive = true;
   private FCircle player;
   private float speed = 180;
   private Coord force;
-  private final int rushRange = 350;
+  private final int rushRange = 200;
   private int cptChangeDirection = 0;
   private Coord coordToRush;
   private boolean possed = false;
@@ -69,8 +69,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>//
       player.setDrawable(true);
     else
       player.setDrawable(false);
-      
-    noFill();
+     noFill();
     stroke(100);
     if (!this.possed) {
       ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);

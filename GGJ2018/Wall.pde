@@ -16,6 +16,7 @@ class Wall {
     wall.setGrabbable(false);
     wall.setStatic(true);
     wall.setStrokeColor(color(COLOR_WH));
+    wall.setFillColor(color(COLOR_WH));
     wall.setRestitution(0);
     m_world.add(wall);
   }
