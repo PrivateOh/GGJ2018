@@ -48,6 +48,7 @@ private void defineLevel1() {
   this.m_walls.add(new Wall(caseIntoCoord(J, 12), caseIntoCoord(O, 13)));
   this.m_walls.add(new Wall(caseIntoCoord(L, 11), caseIntoCoord(O, 12)));
   this.m_walls.add(new Wall(caseIntoCoord(P, 11), caseIntoCoord(S, 13)));
+  this.m_walls.add(new Wall(caseIntoCoord(P, 12), caseIntoCoord(S, 14)));
   this.m_walls.add(new Wall(caseIntoCoord(S, 12), caseIntoCoord(V, 13)));
   this.m_walls.add(new Wall(caseIntoCoord(H, 14), caseIntoCoord(T, 15)));
   this.m_walls.add(new Wall(caseIntoCoord(U, 13), caseIntoCoord(AF, 14)));
@@ -73,24 +74,24 @@ private void defineLevel1() {
   this.m_walls.add(new Wall(caseIntoCoord(AI, 3), caseIntoCoord(AJ, 8)));
 
   //Obstacles
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(G, 3+0.5), 0));
-  this.m_obstacles.add(new Obstacle("sink", caseIntoCoord(K+0.5, 5), 90));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V+0.5, 16), 90));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V, 22+0.5), 0));
-  this.m_obstacles.add(new Obstacle("sink", caseIntoCoord(AC+0.5, 16+0.5), 0));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(AD+0.5, 20), 270));
-  this.m_obstacles.add(new Obstacle("door", caseIntoCoord(R, 13+0.5), 90));
-  this.m_obstacles.add(new Interrupteur(caseIntoCoord(O+0.5, 7+0.2), 0, m_obstacles.get(m_obstacles.size()-1)));
-  this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(AF+0.5, 10), 0));
-  this.m_obstacles.add(new Interrupteur(caseIntoCoord(AF, 23-0.2), 180, m_obstacles.get(m_obstacles.size()-1)));
+  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(G, 3), 0));
+  this.m_obstacles.add(new Obstacle("coffre", caseIntoCoord(K, 5), 90));
+  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V, 16), 90));
+  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V, 22), 0));
+  this.m_obstacles.add(new Obstacle("sink", caseIntoCoord(AC, 16), 0));
+  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(AD, 20), 270));
+  this.m_obstacles.add(new Obstacle("door", caseIntoCoord(R, 13), 90));
+  this.m_obstacles.add(new Interrupteur(caseIntoCoord(O, 7-0.2), 0, m_obstacles.get(m_obstacles.size()-1)));
+  this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(AF, 10), 0));
+  this.m_obstacles.add(new Interrupteur(caseIntoCoord(AF, 22+0.2), 180, m_obstacles.get(m_obstacles.size()-1)));
 
   //Texte
   
 
   //Fin de niveau
   endLevel = new FPoly();
-  Coord start = caseIntoCoord(AF, 2);
-  Coord end = caseIntoCoord(AG, 3);
+  Coord start = caseIntoCoord(AF-0.5, 2-0.5);
+  Coord end = caseIntoCoord(AG-0.5, 3-0.5);
   endLevel.vertex(start.x, start.y);
   endLevel.vertex(start.x, end.y);
   endLevel.vertex(end.x, end.y);
@@ -123,8 +124,8 @@ private void defineLevel2() {
   
   //Fin de niveau
   endLevel = new FPoly();
-  Coord start = caseIntoCoord(B, 14);
-  Coord end = caseIntoCoord(C, 15);
+  Coord start = caseIntoCoord(B-0.5, 14);
+  Coord end = caseIntoCoord(C-0.5, 15);
   endLevel.vertex(start.x, start.y);
   endLevel.vertex(start.x, end.y);
   endLevel.vertex(end.x, end.y);

@@ -82,6 +82,7 @@ void draw() {
     text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
     fill(255);
     text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
+    text("Hide from the ghosts in the items", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z,16).getY());
   }
 }
 

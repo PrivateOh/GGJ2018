@@ -2,23 +2,40 @@ class Wall {
   private Coord start;
   private Coord end;
   private FPoly wall;
-
+  private ArrayList<FBox> walls;
+  private PImage texture;
   public Wall(Coord start, Coord end) {
     this.start = start;
     this.end = end;
+    texture = loadImage("/data/textures/wall.png");
+    walls = new ArrayList<FBox>();
+    float t_x, t_y;
+    t_x = abs(end.x-start.x);
+    t_y = abs(end.y-start.y);
+    int i;
+    FBox walltempo;
+    if (t_x > t_y) {
+      for (i=0; i<t_x/coeffX; i++) {
+        walltempo = new FBox(40,40);
+        walltempo.setPosition(start.x+i*coeffX,start.y);
+        walls.add(walltempo);
+      }
+    }
+    else{
+      for (i=0; i<t_y/coeffY; i++) {
+        walltempo = new FBox(40,40);
+        walltempo.setPosition(start.x,start.y+i*coeffY);
+        walls.add(walltempo);
+      }
+    }
 
-    FPoly wall = new FPoly();
-    wall.vertex(start.x, start.y);
-    wall.vertex(start.x, end.y);
-    wall.vertex(end.x, end.y);
-    wall.vertex(end.x, start.y);
-    wall.vertex(start.x, start.y);
-    wall.setGrabbable(false);
-    wall.setStatic(true);
-    wall.setStrokeColor(color(COLOR_GR));
-    wall.setFillColor(color(COLOR_GR));
-    wall.setRestitution(0);
-    m_world.add(wall);
+    for (FBox w : walls) {
+      w.setGrabbable(false);
+      w.setStatic(true);
+      w.setRestitution(0);
+      w.attachImage(texture);
+      m_world.add(w);
+    }
   }
 
   void setStart(Coord start) {
