@@ -21,6 +21,7 @@ class Ennemy extends Entity {
     this.m_ennemy = new FCircle(size);
     this.m_ennemy.setPosition(x, y);
     this.m_ennemy.setGrabbable(false);
+    this.m_ennemy.setStatic(true);
     radarAngle = 90 + m_ennemy.getRotation();
     m_world.add(this.m_ennemy);
   }

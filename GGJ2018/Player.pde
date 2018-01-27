@@ -9,6 +9,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
 
     this.force = new Coord(0, 0);
     this.player = new FCircle(size);
+    this.player.setGrabbable(false);
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
     //this.player.setStatic(true);
     m_world.add(this.player);
