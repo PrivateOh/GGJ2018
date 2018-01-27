@@ -1,17 +1,22 @@
 class Wall {
   private Coord start;
   private Coord end;
-  private FLine wall;
+  private FPoly wall;
 
   public Wall(Coord start, Coord end) {
     this.start = start;
     this.end = end;
 
-    this.wall = new FLine(start.x, start.y, end.x, end.y);
-    this.wall.setGrabbable(false);
-    this.wall.setStatic(true);
-    this.wall.setStrokeColor(color(COLOR_WH));
-    m_world.add(this.wall);
+    FPoly wall = new FPoly();
+    wall.vertex(start.x, start.y);
+    wall.vertex(start.x, end.y);
+    wall.vertex(end.x, end.y);
+    wall.vertex(end.x, start.y);
+    wall.vertex(start.x, start.y);
+    wall.setGrabbable(false);
+    wall.setStatic(true);
+    wall.setStrokeColor(color(COLOR_WH));
+    m_world.add(wall);
   }
 
   void setStart(Coord start) {
@@ -30,7 +35,7 @@ class Wall {
     return this.end;
   }
 
-  FLine getWall() {
+  FPoly getWall() {
     return this.wall;
   }
 }
