@@ -5,6 +5,12 @@
 //              Version : 0.08              //
 //////////////////////////////////////////////
 
+// PLus pouvoir bouger
+// Ne plus être détectable
+// Entrer de l'intérieur de l'objet
+// faire disparaitre le cercle
+// Re-click ejecter de l'objet
+
 import fisica.*;
 
 public static final int COLOR_BK = 0;
@@ -38,7 +44,7 @@ void draw() {
   this.m_world.step();
   this.m_world.draw();
   if (this.player != null){
-    this.player.detectObstacle();
+    //this.player.detectObstacle();
     this.player.draw();
   }
   for (Ennemy ennemy : m_ennemys) {

@@ -1,35 +1,34 @@
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
-  private Boolean isAlive;
+  private boolean isAlive = true;
   private FCircle player;
   private Coord force;
-  private int rushRange = 350;
+  private final int rushRange = 350;
   private int cptChangeDirection = 0;
   private Coord coordToRush;
   private boolean possed = false;
   private boolean isRushing = false;
-  public Player(Coord coord, int id, float size) {
-    super(coord, id);
-    this.isAlive = true;
+  private boolean isObject = false;
 
+  public Player(Coord coord, int id, float size) {
+    super(coord, id, false);
     this.force = new Coord(0, 0);
     this.coordToRush = new Coord (0, 0);
     this.player = new FCircle(size);
     this.player.setGrabbable(false);
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
+    this.player.setGroupIndex(0);
     m_world.add(this.player);
   }
 
-  public Boolean getIsAlive () {
+  /*****************  Getters | Setters ***************/
+
+  public boolean getIsAlive () {
     return this.isAlive;
   }
 
-  public void setIsAlive (Boolean a) {
+  public void setIsAlive (boolean a) {
     this.isAlive = a;
-  }
-
-  public void updateForce () {
-    player.setVelocity(this.force.getX(), this.force.getY());
   }
 
   public void setForceX (float x) {
@@ -40,35 +39,45 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
     this.force.setY(y);
   }
 
-  public void detectObstacle () {
-    FRaycastResult result = new FRaycastResult();
-    FBody b = m_world.raycastOne(this.player.getX(), this.player.getY(), mouseX, mouseY, result, false);
-    if (b != null) {
-      for (Obstacle obs : m_obstacles) {
-        if (obs.getObstacle().equals(b)) {
-          println(obs.getType());
-        }
-      }
+  // Change velocity
+  public void updateForce () {
+    this.player.setVelocity(this.force.getX(), this.force.getY());
+  }
+
+  public boolean detectObstacle () {
+    FBody fb = m_world.getBody(mouseX, mouseY);
+    if(fb != null) {
+      if(fb.getGroupIndex() != Obstacle.Id) return true;
     }
+    FRaycastResult result = new FRaycastResult();
+
+    FBody b = m_world.raycastOne(this.player.getX(), this.player.getY(), mouseX, mouseY, result, false);
+    this.isObject = fb != null;
+
+    if (fb != null && b != null && b.equals(fb)) {
+      b = m_world.raycastOne(this.player.getX(), this.player.getY(), b.getX(), b.getY(), result, false);
+    }
+    return (m_world.getBody(mouseX, mouseY) != b);
   }
 
   public void draw () {
-    if (this.possed == true) {
-      player.setDrawable(false);
-    } else {
-      player.setDrawable(true);
-    }
+    player.setDrawable(!this.possed);
     noFill();
-    stroke(25);
-    ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
-    if (this.isRushing)
+    stroke(100);
+    if (!this.possed) {
+      ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
+    }
+
+    if (this.isRushing) {
       rushing();
+    }
   }
 
   public void keyPressed(int keyCode) {
+    if (this.possed) return;
+    this.player.setSensor(false);
     switch(keyCode) {
     case LEFT: //GAUCHE
-
       this.setForceX(-500);
       break;
     case RIGHT://DROITE
@@ -85,6 +94,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
   public void keyReleased(int keyCode) {
+    this.player.setSensor(true);
     switch(keyCode) {
     case LEFT: //GAUCHE
       this.setForceX(0);
@@ -134,25 +144,31 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
         this.setForceY(0);
     }
     this.updateForce();
+
     if ((this.force.getX() == 0 && this.force.getY() == 0) || this.cptChangeDirection > 4)
     {
       this.setForceY(0);
       this.setForceX(0);
       this.updateForce();
       this.isRushing = false;
-      this.possed = !this.possed;
       this.cptChangeDirection = 0;
     }
   }
 
   void mousePressed() {
-    if (this.possed == false) {
-      if (abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2) {
+    detectObstacle();
+    FBody fb = m_world.getBody(mouseX, mouseY);
+    if(fb != null) {
+      if(fb.getGroupIndex() != Obstacle.Id) return;
+    }
+    
+    if ((abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2)) {
+      if (this.possed) {
+        this.possed = this.isObject;
         this.rushTo(new Coord(mouseX, mouseY));
       }
-    } else
-    {
-      if (abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2) {
+      if (!this.possed && this.isObject) {
+        this.possed = this.isObject ;
         this.rushTo(new Coord(mouseX, mouseY));
       }
     }

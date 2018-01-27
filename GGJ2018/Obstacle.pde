@@ -1,4 +1,4 @@
-  class Obstacle{
+  class Obstacle extends Entity {
 
   private FPoly obstacle;
   private JSONObject json;
@@ -6,10 +6,12 @@
   private PImage texture;
   private Coord position;
   private String type;
+  public static final int Id = 1000;
 
   public Obstacle(String type, Coord position, float rotation) {
+    super(position, 10000, true);
     obstacle = new FPoly();
-    
+    obstacle.setGroupIndex(Obstacle.Id);
     this.type = type;
     this.rotation = rotation;
     this.position = position;
