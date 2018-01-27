@@ -21,10 +21,10 @@ void setup() {
   this.initWorld();
   this.loadLevel(1);
   
-  Obstacle o = new Obstacle(new Coord(width/2, height/2+20), 90);
+  Obstacle o = new Obstacle("door", new Coord(width/2, height/2+20), 90);
   o.drawObstacle();
   
-    Obstacle ob = new Obstacle(new Coord(width/2, height/2), 0);
+  Obstacle ob = new Obstacle("desk", new Coord(width/2, height/2), 0);
   ob.drawObstacle();
 }
 

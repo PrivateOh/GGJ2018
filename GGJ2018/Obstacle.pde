@@ -1,34 +1,35 @@
 class Obstacle {
 
-  FPoly obstacle = new FPoly();
-  color colour;
-  JSONObject json;
-  float rotation;
-  PImage texture;
-  String name;
-  Coord position;
+  private FPoly obstacle;
+  private JSONObject json;
+  private float rotation;
+  private PImage texture;
+  private Coord position;
+  private String type;
 
-  public Obstacle(Coord position, float rotation) { 
+  public Obstacle(String type, Coord position, float rotation) {
+    obstacle = new FPoly();
+    
+    this.type = type;
     this.rotation = rotation;
     this.position = position;
   }
 
   void drawObstacle() {
 
-    texture = loadImage("/data/textures/desk.jpeg");
+    texture = loadImage("/data/textures/" + type + ".jpeg");
 
     json = loadJSONObject("obstacles.json");
 
-    JSONArray values = json.getJSONArray("coordinates");
-
-    name = json.get("name").toString();
+    JSONObject obstacleObject = json.getJSONObject(getType());
+    JSONArray values = obstacleObject.getJSONArray("coordinates");
 
     for (int i = 0; i < values.size(); i++) {
 
-      JSONObject animal = values.getJSONObject(i); 
+      JSONObject coordinate = values.getJSONObject(i); 
 
-      int x = animal.getInt("X");
-      int y = animal.getInt("Y");
+      int x = coordinate.getInt("X");
+      int y = coordinate.getInt("Y");
 
       obstacle.vertex(x, y);
     }
@@ -36,9 +37,33 @@ class Obstacle {
     obstacle.setPosition(position.getX(), position.getY());
     obstacle.setStatic(true);
     obstacle.setGrabbable(false);
-    obstacle.setRotation(radians(this.rotation));
-    obstacle.attachImage(texture);
+    obstacle.setRotation(radians(getRotation()));
+   // obstacle.attachImage(texture);
 
     m_world.add(obstacle);
+  }
+
+  void setCoord(Coord position) {
+    this.position = position;
+  }
+
+  Coord getCoord() {
+    return this.position;
+  }
+  
+  void setRotation(float rotation) {
+    this.rotation = rotation;
+  }
+
+  float getRotation() {
+    return this.rotation;
+  }
+  
+  void setType(String type) {
+    this.type = type;
+  }
+
+  String getType() {
+    return this.type;
   }
 }
