@@ -13,13 +13,15 @@ class Ennemy extends Entity {
     // Create ennemy
     this.m_ennemy = new FBox(size, size);
     this.m_ennemy.setPosition(x, y);
+    this.m_ennemy.setGrabbable(false);
     
     // Create radar
     this.m_radar = new FPoly();
     this.m_radar.vertex(x, y-(size/2));
-    this.m_radar.vertex(x-(size), y-100);
-    this.m_radar.vertex(x+(size), y-100);
-    m_radar.setFill(255, 0, 0);
+    this.m_radar.vertex(x-(size/2), y-300);
+    this.m_radar.vertex(x+(size/2), y-300);
+    this.m_radar.setGrabbable(false);
+    this.m_radar.setFill(255, 0, 0);
     
     // Add object to the world
     m_world.add(this.m_ennemy);

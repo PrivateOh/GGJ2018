@@ -3,13 +3,15 @@ class Player  extends Entity { //<>// //<>//
   private Boolean isAlive;
   private FCircle player;
   private Coord force;
+
   public Player(Coord coord, int id, float size) {
-    super (coord, id);
+    super(coord, id);
     this.isAlive = true;
     this.force = new Coord(0, 0);
-    player = new FCircle(size);
-    player.setPosition(this.getCoord().getX(), this.getCoord().getY());
-    m_world.add(player);
+    this.player = new FCircle(size);
+    this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
+    //this.player.setStatic(true);
+    m_world.add(this.player);
   }
 
   public Boolean getIsAlive () {
@@ -21,7 +23,7 @@ class Player  extends Entity { //<>// //<>//
   }
 
   public void updateForce () {
-    player.addForce(this.force.getX(), this.force.getY());
+    player.setVelocity(this.force.getX(), this.force.getY());
   }
 
   public void setForceX (float x) {
@@ -30,5 +32,42 @@ class Player  extends Entity { //<>// //<>//
 
   public void setForceY (float y) {
     this.force.setY(y);
+  }
+
+  public void keyPressed(int keyCode) {
+    switch(keyCode) {
+    case LEFT: //GAUCHE
+
+      this.setForceX(-500);
+      break;
+    case RIGHT://DROITE
+      this.setForceX(500);
+      break;
+    case UP: //HAUT
+      this.setForceY(-500);
+      break;
+    case DOWN: //BAS
+      this.setForceY(500);
+      break;
+    }
+    this.updateForce();
+  }
+
+  public void keyReleased(int keyCode) {
+    switch(keyCode) {
+    case LEFT: //GAUCHE
+      this.setForceX(0);
+      break;
+    case RIGHT://DROITE
+      this.setForceX(0);
+      break;
+    case UP: //HAUT
+      this.setForceY(0);
+      break;
+    case DOWN: //BAS
+      this.setForceY(0);
+      break;
+    }
+    this.updateForce();
   }
 }
