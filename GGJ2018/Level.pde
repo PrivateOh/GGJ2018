@@ -25,11 +25,19 @@ private void defineLevel1() {
 
   //Enemy
   ArrayList<Coord> coords = new ArrayList<Coord>();
-  coords.add(new Coord(48*coeffX,18*coeffY));
-  coords.add(new Coord(48*coeffX,16*coeffY));
-  coords.add(new Coord(36*coeffX,10*coeffY));
-  coords.add(new Coord(38*coeffX,10*coeffY));
-  this.m_ennemys.add(new Ennemy(new Coord(38*coeffX,18*coeffY), 1, 20, 200,90, coords));
+  coords.add(caseIntoCoord(AF, 20));
+  coords.add(caseIntoCoord(AF, 15));
+  coords.add(caseIntoCoord(AA, 15));
+  coords.add(caseIntoCoord(AA, 20));
+  coords.add(caseIntoCoord(X, 20));
+  
+  ArrayList<Integer> rotations = new ArrayList<Integer>();
+  rotations.add(0);
+  rotations.add(90);
+  rotations.add(180);
+  rotations.add(90);
+  rotations.add(270);
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200,0, coords, rotations));
 
   //Wall
   //Horizontaux

@@ -6,23 +6,26 @@ class Ennemy extends Entity {
   private float detectRange;
   private FCircle m_ennemy;
   private int cptChangeDirection = 0;
+  private float timer = 0.0;
 
   private Coord force;
   private Coord coordToRush;
   private boolean isRushing = false;
   private ArrayList<Coord> positions;
+  private ArrayList<Integer> rotations;
   private int indexPos = 1;
   private int sensPos = 1;
 
-  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions) {
+  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations) {
     super(coord, id, false);
 
     // Coords
     float x = this.getCoord().getX();
     float y = this.getCoord().getY();
     this.detectRange = detectRange;
-    
+
     this.positions = positions;
+    this.rotations = rotations;
 
     this.force = new Coord(0, 0);
     this.coordToRush = new Coord (0, 0);
@@ -42,9 +45,13 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      rushTo(this.positions.get(indexPos));
-      indexPos += sensPos;
-      if(indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
+      if (millis() - this.timer> 500) {
+        this.timer = millis();
+        this.rotate(sensPos == 1 ? this.rotations.get(indexPos) : (this.rotations.get(indexPos)+180)%360);
+        rushTo(this.positions.get(indexPos));
+        indexPos += sensPos;
+        if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
+      }
     }
   }
 
@@ -128,7 +135,7 @@ class Ennemy extends Entity {
   }
 
 
-  public void rotate (float degres) {
+  public void rotate (int degres) {
     this.m_ennemy.setRotation(degres);
   }
 }
