@@ -7,6 +7,7 @@
   private Coord position;
   private String type;
   public static final int Id = 1000;
+  private boolean possessed = false;
 
   public Obstacle(String type, Coord position, float rotation) {
     super(position, 10000, true);
@@ -17,7 +18,14 @@
     this.rotation = rotation;
     this.position = position;
   }
+  
+  public boolean getPossessed() {
+    return this.possessed;
+  }
 
+  public void setPossessed(boolean b) {
+    this.possessed = b;
+  }
   void drawObstacle() {
 
     texture = loadImage("/data/textures/" + type + ".png");

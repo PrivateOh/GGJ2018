@@ -53,6 +53,10 @@ void draw() {
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
   }
+  
+  for(Obstacle obstacle : m_obstacles) {
+    obstacle.setPossessed(obstacle.obstacle.isSensor());
+  }
   drawCursor();
 }
 

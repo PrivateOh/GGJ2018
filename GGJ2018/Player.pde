@@ -64,10 +64,12 @@ class Player  extends Entity { //<>// //<>// //<>// //<>//
   }
 
   public void draw () {
-    if (this.possed && this.isRushing)
+    
+    if (!this.possed || this.isRushing)
       player.setDrawable(true);
     else
-      player.setDrawable(true);
+      player.setDrawable(false);
+      
     noFill();
     stroke(100);
     if (!this.possed) {
