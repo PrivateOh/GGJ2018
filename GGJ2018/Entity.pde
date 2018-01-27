@@ -1,4 +1,4 @@
-class Entity {
+class Entity  {
 
   private Coord coord;
   private int id;

@@ -172,6 +172,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>//
       if (this.possed) {
         this.possed = this.isObject;
         if (obstaclePrec !=null) {
+           //soundAbsorb.play();
           obstaclePrec.setSensor(false);
         }
         this.rushTo(new Coord(mouseX, mouseY));

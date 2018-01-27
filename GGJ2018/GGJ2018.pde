@@ -12,7 +12,12 @@
 // Re-click ejecter de l'objet
 
 import fisica.*;
+import processing.sound.*;
 
+SoundFile soundAbsorb;
+
+public int COEFF_X;
+public int COEFF_Y;
 public static final int COLOR_BK = 0;
 public static final int COLOR_WH = 255;
 public Player player = null;
@@ -28,6 +33,11 @@ public FWorld m_world;
 void setup() {
   fullScreen();
   smooth();
+  COEFF_X = width/40;
+  COEFF_Y = height/27;
+
+ // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
+
   currentLevel = 1;
   Fisica.init(this);
   noCursor();
@@ -41,20 +51,22 @@ void setup() {
 void draw() {
   background(COLOR_BK);
 
+  stroke(255);
   if (!this.player.getIsAlive()) {
     loadLevel(currentLevel);
   }
   this.m_world.step();
   this.m_world.draw();
-  if (this.player != null){
+  if (this.player != null) {
     //this.player.detectObstacle();
     this.player.draw();
   }
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
+    ennemy.draw();
   }
-  
-  for(Obstacle obstacle : m_obstacles) {
+
+  for (Obstacle obstacle : m_obstacles) {
     obstacle.setPossessed(obstacle.obstacle.isSensor());
   }
   drawCursor();

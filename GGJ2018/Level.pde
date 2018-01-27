@@ -22,7 +22,12 @@ private void defineLevel1() {
   this.player = new Player(new Coord(2*coeffX,1*coeffY), 1, 20);
 
   //Enemy
-  this.m_ennemys.add(new Ennemy(new Coord(38*coeffX,18*coeffY), 1, 20, 200,90));
+  ArrayList<Coord> coords = new ArrayList<Coord>();
+  coords.add(new Coord(48*coeffX,18*coeffY));
+  coords.add(new Coord(48*coeffX,16*coeffY));
+  coords.add(new Coord(36*coeffX,10*coeffY));
+  coords.add(new Coord(38*coeffX,10*coeffY));
+  this.m_ennemys.add(new Ennemy(new Coord(38*coeffX,18*coeffY), 1, 20, 200,90, coords));
 
   //Wall
   //Horizontaux
