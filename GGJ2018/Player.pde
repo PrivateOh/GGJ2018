@@ -47,8 +47,8 @@ class Player  extends Entity { //<>//
 
   public boolean detectObstacle () {
     FBody fb = m_world.getBody(mouseX, mouseY);
-    if(fb != null) {
-      if(fb.getGroupIndex() != Obstacle.Id) return true;
+    if (fb != null) {
+      if (fb.getGroupIndex() != Obstacle.Id) return true;
     }
     FRaycastResult result = new FRaycastResult();
 
@@ -159,10 +159,10 @@ class Player  extends Entity { //<>//
   void mousePressed() {
     detectObstacle();
     FBody fb = m_world.getBody(mouseX, mouseY);
-    if(fb != null) {
-      if(fb.getGroupIndex() != Obstacle.Id) return;
+    if (fb != null) {
+      if (fb.getGroupIndex() != Obstacle.Id) return;
     }
-    
+
     if ((abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2)) {
       if (this.possed) {
         this.possed = this.isObject;
@@ -174,7 +174,7 @@ class Player  extends Entity { //<>//
       }
     }
   }
-  FBody getObject (){
+  FBody getObject () {
     return this.player;
   }
 }

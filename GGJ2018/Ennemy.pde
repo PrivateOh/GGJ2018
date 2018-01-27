@@ -4,7 +4,7 @@ class Ennemy extends Entity {
   private int radarSens = 1;
   private float radarAngle ;
   private float detectRange;
-  
+
   private FCircle m_ennemy;
 
   public Ennemy(Coord coord, int id, float size, float detectRange, float rotate) {
@@ -14,7 +14,7 @@ class Ennemy extends Entity {
     float x = this.getCoord().getX();
     float y = this.getCoord().getY();
     this.detectRange = detectRange;
-    
+
 
     // Create ennemy
     this.m_ennemy = new FCircle(size);
@@ -23,7 +23,6 @@ class Ennemy extends Entity {
     this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
     //this.m_ennemy.setRotation(60);
-    
     this.m_ennemy.setRotation(rotate);
     radarAngle = 90 + m_ennemy.getRotation();
     m_world.add(this.m_ennemy);
@@ -41,18 +40,18 @@ class Ennemy extends Entity {
     float y = this.m_ennemy.getY();
 
     radarAngle = radarAngle + radarSens;
-    
+
     stroke(255);
     line(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)));
-    
+
     FBody b = m_world.raycastOne(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)), new FRaycastResult(), false);
 
     if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject()) {
       player.setIsAlive(false);
-    } 
+    }
   }
-  
-  public void rotate (float degres){
+
+  public void rotate (float degres) {
     this.m_ennemy.setRotation(degres);
   }
 }
