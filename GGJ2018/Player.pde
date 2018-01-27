@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-=======
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
->>>>>>> 633941c95207593a82dbd7c27ec723aae8509e52
+class Player  extends Entity { //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -83,10 +79,6 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     this.player.setSensor(false);
     switch(keyCode) {
     case LEFT: //GAUCHE
-<<<<<<< HEAD
-
-=======
->>>>>>> 633941c95207593a82dbd7c27ec723aae8509e52
       this.setForceX(-speed);
       break;
     case RIGHT://DROITE
