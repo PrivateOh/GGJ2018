@@ -36,6 +36,8 @@ class Ennemy extends Entity {
 
     radarAngle = radarAngle + radarSens;
     FRaycastResult result = new FRaycastResult();
+    stroke(255);
+    line(this.m_ennemy.getX(), m_ennemy.getY(), this.m_ennemy.getX()+detectRange*sin(radians(90-radarAngle)), this.m_ennemy.getY()-detectRange*sin(radians(radarAngle)));
     FBody b = m_world.raycastOne(this.m_ennemy.getX(), m_ennemy.getY(), this.m_ennemy.getX()+detectRange*sin(radians(90-radarAngle)), this.m_ennemy.getY()-detectRange*sin(radians(radarAngle)), result, false);
 
     if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(m_ennemy.getX(), 2)+pow(m_ennemy.getY(), 2)))<this.detectRange) {

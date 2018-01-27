@@ -1,4 +1,4 @@
-class Obstacle {
+  class Obstacle {
 
   private FPoly obstacle;
   private JSONObject json;
