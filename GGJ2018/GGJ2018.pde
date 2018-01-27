@@ -44,42 +44,13 @@ void loadLevel(int number) {
 void keyPressed() {
   if (this.player != null)
   {
-    switch(keyCode) {
-    case LEFT: //GAUCHE
-    
-      this.player.setForceX(-500);
-      break;
-    case RIGHT://DROITE
-      this.player.setForceX(500);
-      break;
-    case UP: //HAUT
-      this.player.setForceY(-500);
-      break;
-    case DOWN: //BAS
-      this.player.setForceY(500);
-      break;
-    }
+    this.player.keyPressed(keyCode);
   }
-  this.player.updateForce();
 }
 
 void keyReleased() {
   if (this.player != null)
   {
-    switch(keyCode) {
-    case LEFT: //GAUCHE
-      this.player.setForceX(0);
-      break;
-    case RIGHT://DROITE
-      this.player.setForceX(0);
-      break;
-    case UP: //HAUT
-      this.player.setForceY(0);
-      break;
-    case DOWN: //BAS
-      this.player.setForceY(0);
-      break;
-    }
+    this.player.keyReleased(keyCode);
   }
-  this.player.updateForce();
 }

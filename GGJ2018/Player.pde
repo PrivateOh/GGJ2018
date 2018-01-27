@@ -33,4 +33,41 @@ class Player  extends Entity { //<>// //<>//
   public void setForceY (float y) {
     this.force.setY(y);
   }
+
+  public void keyPressed(int keyCode) {
+    switch(keyCode) {
+    case LEFT: //GAUCHE
+
+      this.setForceX(-500);
+      break;
+    case RIGHT://DROITE
+      this.setForceX(500);
+      break;
+    case UP: //HAUT
+      this.setForceY(-500);
+      break;
+    case DOWN: //BAS
+      this.setForceY(500);
+      break;
+    }
+    this.updateForce();
+  }
+
+  public void keyReleased(int keyCode) {
+    switch(keyCode) {
+    case LEFT: //GAUCHE
+      this.setForceX(0);
+      break;
+    case RIGHT://DROITE
+      this.setForceX(0);
+      break;
+    case UP: //HAUT
+      this.setForceY(0);
+      break;
+    case DOWN: //BAS
+      this.setForceY(0);
+      break;
+    }
+    this.updateForce();
+  }
 }
