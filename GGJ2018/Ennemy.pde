@@ -8,7 +8,11 @@ class Ennemy extends Entity {
   private FCircle m_ennemy;
 
   public Ennemy(Coord coord, int id, float size, float detectRange, float rotate) {
+<<<<<<< HEAD
     super(coord, id,true);
+=======
+    super(coord, id, false);
+>>>>>>> 633941c95207593a82dbd7c27ec723aae8509e52
 
     // Coords
     float x = this.getCoord().getX();
@@ -23,7 +27,11 @@ class Ennemy extends Entity {
     this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
     //this.m_ennemy.setRotation(60);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 633941c95207593a82dbd7c27ec723aae8509e52
     this.m_ennemy.setRotation(rotate);
     radarAngle = 90 + m_ennemy.getRotation();
     m_world.add(this.m_ennemy);
