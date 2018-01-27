@@ -12,9 +12,6 @@
 // Re-click ejecter de l'objet
 
 import fisica.*;
-import processing.sound.*;
-
-SoundFile soundAbsorb;
 
 public int COEFF_X;
 public int COEFF_Y;
@@ -38,7 +35,7 @@ void setup() {
   COEFF_X = width/40;
   COEFF_Y = height/27;
 
- // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
+  // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
 
   currentLevel = 1;
   Fisica.init(this);
@@ -76,6 +73,16 @@ void draw() {
     loadLevel(currentLevel);
   }
   drawCursor();
+  if (currentLevel == 1) {
+    fill(0);
+    text("Click on item in your \naction range to posses them", caseIntoCoord(F, 3).getX(), caseIntoCoord(H, 3-0.5).getY());
+    fill(255);
+    text("Click on the floor in your \naction range to quit the item", caseIntoCoord(F, 5).getX(), caseIntoCoord(H, 5-0.5).getY());
+    fill(0);
+    text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
+    fill(255);
+    text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
+  }
 }
 
 /* Create the world and init parameters */
@@ -90,6 +97,8 @@ void loadLevel(int number) {
     this.m_world.clear();
   }
   this.m_ennemys.clear();
+  this.m_obstacles.clear();
+  this.m_walls.clear();
   this.initWorld();
   /* File: Level.ine */
   this.createLevel(number);

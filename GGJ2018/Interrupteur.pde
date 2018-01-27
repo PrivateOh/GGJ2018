@@ -11,10 +11,9 @@ class Interrupteur extends Obstacle {
     if (!isOpen) {
       doorLinked.setRotation(doorLinked.getRotation()+90);
       if (doorLinked.getRotation() == 0 || doorLinked.getRotation() == 180) {
-        doorLinked.setCoord(new Coord(doorLinked.getCoord().getX(),doorLinked.getCoord().getY()+(0.5*coeffY)));
-      }
-      else{
-        doorLinked.setCoord(new Coord(doorLinked.getCoord().getX()+(0.5*coeffX),doorLinked.getCoord().getY()));
+        doorLinked.setCoord(new Coord(doorLinked.getCoord().getX(), doorLinked.getCoord().getY()+(0.5*coeffY)));
+      } else {
+        doorLinked.setCoord(new Coord(doorLinked.getCoord().getX()+(0.5*coeffX), doorLinked.getCoord().getY()));
       }
       doorLinked.getObstacle().setDrawable(false);
       doorLinked.drawObstacle();
