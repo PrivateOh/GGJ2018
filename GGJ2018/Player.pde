@@ -3,13 +3,15 @@ class Player  extends Entity { //<>// //<>//
   private Boolean isAlive;
   private FCircle player;
   private Coord force;
+
   public Player(Coord coord, int id, float size) {
-    super (coord, id);
+    super(coord, id);
     this.isAlive = true;
     this.force = new Coord(0, 0);
-    player = new FCircle(size);
-    player.setPosition(this.getCoord().getX(), this.getCoord().getY());
-    m_world.add(player);
+    this.player = new FCircle(size);
+    this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
+    //this.player.setStatic(true);
+    m_world.add(this.player);
   }
 
   public Boolean getIsAlive () {
@@ -21,7 +23,7 @@ class Player  extends Entity { //<>// //<>//
   }
 
   public void updateForce () {
-    player.addForce(this.force.getX(), this.force.getY());
+    player.setVelocity(this.force.getX(), this.force.getY());
   }
 
   public void setForceX (float x) {

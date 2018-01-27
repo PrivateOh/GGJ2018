@@ -46,16 +46,17 @@ void keyPressed() {
   {
     switch(keyCode) {
     case LEFT: //GAUCHE
-      this.player.setForceX(-8000);
+    
+      this.player.setForceX(-500);
       break;
     case RIGHT://DROITE
-      this.player.setForceX(8000);
+      this.player.setForceX(500);
       break;
     case UP: //HAUT
-      this.player.setForceY(-8000);
+      this.player.setForceY(-500);
       break;
     case DOWN: //BAS
-      this.player.setForceY(8000);
+      this.player.setForceY(500);
       break;
     }
   }
