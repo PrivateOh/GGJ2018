@@ -74,9 +74,8 @@ class Player  extends Entity { //<>//
       player.setDrawable(false);
     noFill();
     stroke(100);
-    if (!this.possed) {
       ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
-    }
+   
 
     if (this.isRushing) {
       rushing();
@@ -86,16 +85,16 @@ class Player  extends Entity { //<>//
   public void keyPressed(int keyCode) {
     if (this.possed) return;
     switch(keyCode) {
-    case LEFT: //GAUCHE
+    case 'Q': //GAUCHE
       this.setForceX(-speed);
       break;
-    case RIGHT://DROITE
+    case 'D'://DROITE
       this.setForceX(speed);
       break;
-    case UP: //HAUT
+    case 'Z': //HAUT
       this.setForceY(-speed);
       break;
-    case DOWN: //BAS
+    case 'S': //BAS
       this.setForceY(speed);
       break;
     }
@@ -104,16 +103,16 @@ class Player  extends Entity { //<>//
 
   public void keyReleased(int keyCode) {
     switch(keyCode) {
-    case LEFT: //GAUCHE
+    case 'Q': //GAUCHE
       this.setForceX(0);
       break;
-    case RIGHT://DROITE
+    case 'D'://DROITE
       this.setForceX(0);
       break;
-    case UP: //HAUT
+    case 'Z': //HAUT
       this.setForceY(0);
       break;
-    case DOWN: //BAS
+    case 'S': //BAS
       this.setForceY(0);
       break;
     case 'E':
@@ -183,7 +182,6 @@ class Player  extends Entity { //<>//
       if (this.possed) {
         this.possed = this.isObject;
         if (obstaclePrec !=null) {
-           //soundAbsorb.play();
           obstaclePrec.setSensor(false);
         }
         this.rushTo(new Coord(mouseX, mouseY));
