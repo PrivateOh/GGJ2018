@@ -1,4 +1,4 @@
-class Obstacle {
+class Obstacle extends Entity {
 
   private FPoly obstacle;
   private JSONObject json;
@@ -6,18 +6,32 @@ class Obstacle {
   private PImage texture;
   private Coord position;
   private String type;
+  public static final int Id = 1000;
+  private boolean possessed = false;
 
   public Obstacle(String type, Coord position, float rotation) {
+    super(position, 10000, true);
     obstacle = new FPoly();
-    
+    if (type != "door")
+      obstacle.setGroupIndex(Obstacle.Id);
+    else
+      obstacle.setGroupIndex(0);
+    obstacle.setRestitution(0);
     this.type = type;
     this.rotation = rotation;
     this.position = position;
   }
 
+  public boolean getPossessed() {
+    return this.possessed;
+  }
+
+  public void setPossessed(boolean b) {
+    this.possessed = b;
+  }
   void drawObstacle() {
 
-    texture = loadImage("/data/textures/" + type + ".jpeg");
+    texture = loadImage("/data/textures/" + type + ".png");
 
     json = loadJSONObject("obstacles.json");
 
@@ -38,7 +52,7 @@ class Obstacle {
     obstacle.setStatic(true);
     obstacle.setGrabbable(false);
     obstacle.setRotation(radians(getRotation()));
-   // obstacle.attachImage(texture);
+    obstacle.attachImage(texture);
 
     m_world.add(obstacle);
   }
@@ -50,7 +64,7 @@ class Obstacle {
   Coord getCoord() {
     return this.position;
   }
-  
+
   void setRotation(float rotation) {
     this.rotation = rotation;
   }
@@ -58,12 +72,16 @@ class Obstacle {
   float getRotation() {
     return this.rotation;
   }
-  
+
   void setType(String type) {
     this.type = type;
   }
 
   String getType() {
     return this.type;
+  }
+
+  FBody getObstacle() {
+    return this.obstacle;
   }
 }
