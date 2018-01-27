@@ -45,4 +45,8 @@ class Ennemy extends Entity {
       player.setIsAlive(false);
     } 
   }
+  
+  public void rotate (float degres){
+    this.m_ennemy.setRotation(degres);
+  }
 }
