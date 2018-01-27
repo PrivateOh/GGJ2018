@@ -1,4 +1,4 @@
-class Player  extends Entity { //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -18,6 +18,7 @@ class Player  extends Entity { //<>// //<>//
     this.coordToRush = new Coord (0, 0);
     this.player = new FCircle(size);
     this.player.setGrabbable(false);
+    this.player.setRestitution(0);
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
     this.player.setGroupIndex(0);
     m_world.add(this.player);

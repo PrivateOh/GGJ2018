@@ -12,6 +12,7 @@
     super(position, 10000, true);
     obstacle = new FPoly();
     obstacle.setGroupIndex(Obstacle.Id);
+    obstacle.setRestitution(0);
     this.type = type;
     this.rotation = rotation;
     this.position = position;
