@@ -20,6 +20,8 @@ public int COEFF_X;
 public int COEFF_Y;
 public static final int COLOR_BK = 0;
 public static final int COLOR_WH = 255;
+public static final int COLOR_GR = 145;
+public FPoly endLevel;
 public Player player = null;
 public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
@@ -68,6 +70,10 @@ void draw() {
 
   for (Obstacle obstacle : m_obstacles) {
     obstacle.setPossessed(obstacle.obstacle.isSensor());
+  }
+  if (player.getObject().isTouchingBody(endLevel)) {
+    currentLevel++;
+    loadLevel(currentLevel);
   }
   drawCursor();
 }
