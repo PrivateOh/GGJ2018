@@ -14,11 +14,13 @@
 import fisica.*;
 
 public static final int COLOR_BK = 0;
+public static final int COLOR_WH = 255;
 public Player player = null;
 public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
 public int currentLevel;
-public ArrayList<Obstacle> m_obstacles;
+public ArrayList<Wall> m_walls = null;
+public ArrayList<Obstacle> m_obstacles = null;
 
 // World
 public FWorld m_world;
@@ -30,6 +32,7 @@ void setup() {
   Fisica.init(this);
   noCursor();
   this.m_ennemys = new ArrayList<Ennemy>();
+  this.m_walls = new ArrayList<Wall>();
   this.m_obstacles = new ArrayList<Obstacle>();
   this.initWorld();
   this.loadLevel(1);

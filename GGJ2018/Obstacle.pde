@@ -19,7 +19,7 @@
 
   void drawObstacle() {
 
-    texture = loadImage("/data/textures/" + type + ".jpeg");
+    texture = loadImage("/data/textures/" + type + ".png");
 
     json = loadJSONObject("obstacles.json");
 
@@ -43,6 +43,7 @@
     obstacle.attachImage(texture);
 
     m_world.add(obstacle);
+
   }
 
   void setCoord(Coord position) {
