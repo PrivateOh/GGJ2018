@@ -1,4 +1,4 @@
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -79,12 +79,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     this.player.setSensor(false);
     switch(keyCode) {
     case LEFT: //GAUCHE
-<<<<<<< HEAD
-      this.setForceX(-500);
-=======
-
       this.setForceX(-speed);
->>>>>>> fd0c228f67d0444e22aa3ef36be1eee9eec414e6
       break;
     case RIGHT://DROITE
       this.setForceX(speed);
