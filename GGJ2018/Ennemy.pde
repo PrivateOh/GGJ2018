@@ -4,7 +4,6 @@ class Ennemy extends Entity {
   private int radarSens = 1;
   private float radarAngle ;
   private float detectRange;
-  private float size;
 
   private FCircle m_ennemy;
 
@@ -15,7 +14,6 @@ class Ennemy extends Entity {
     float x = this.getCoord().getX();
     float y = this.getCoord().getY();
     this.detectRange = detectRange;
-    this.size = size;
 
     // Create ennemy
     this.m_ennemy = new FCircle(size);
@@ -34,19 +32,17 @@ class Ennemy extends Entity {
       radarSens = -1;
     }
 
+    float x = this.m_ennemy.getX();
+    float y = this.m_ennemy.getY();
+
     radarAngle = radarAngle + radarSens;
-    FRaycastResult result = new FRaycastResult();
     stroke(255);
-    line(this.m_ennemy.getX(), m_ennemy.getY(), this.m_ennemy.getX()+detectRange*sin(radians(90-radarAngle)), this.m_ennemy.getY()-detectRange*sin(radians(radarAngle)));
-    FBody b = m_world.raycastOne(this.m_ennemy.getX(), m_ennemy.getY(), this.m_ennemy.getX()+detectRange*sin(radians(90-radarAngle)), this.m_ennemy.getY()-detectRange*sin(radians(radarAngle)), result, false);
+    
+    line(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)));
+    FBody b = m_world.raycastOne(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)), new FRaycastResult(), false);
 
-    if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(m_ennemy.getX(), 2)+pow(m_ennemy.getY(), 2)))<this.detectRange) {
+    if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange) {
       player.setIsAlive(false);
-    }
-    b= null;
-  }
-
-  public void notifyPlayerDead() {
-    player.setIsAlive(false);
+    } 
   }
 }
