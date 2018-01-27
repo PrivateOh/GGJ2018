@@ -1,30 +1,27 @@
 class Obstacle {
-  
+
   FPoly obstacle = new FPoly();
   color colour;
-  ArrayList<Coord> coordinates = new ArrayList<Coord>();
   JSONObject json;
-  String orientation;
+  float rotation;
+  PImage texture;
+  String name;
+  Coord position;
 
-  public Obstacle(String orientation, color c) { 
-    //PImage texture = loadImage("/data/textures/desk.jpeg");
-    this.colour = c;
-    this.orientation = orientation;
-
-    //obstacle.setPosition(3*width/4, 100);
-    obstacle.setStatic(true);
-    //obstacle.setGrabbable(false);
-    obstacle.setFillColor(color(255, 255, 255, 255));
-    //obstacle.attachImage(texture);
+  public Obstacle(Coord position, float rotation) { 
+    this.rotation = rotation;
+    this.position = position;
   }
 
   void drawObstacle() {
+
+    texture = loadImage("/data/textures/desk.jpeg");
 
     json = loadJSONObject("obstacles.json");
 
     JSONArray values = json.getJSONArray("coordinates");
 
-    //orientation = json.get("orientation").toString();
+    name = json.get("name").toString();
 
     for (int i = 0; i < values.size(); i++) {
 
@@ -33,20 +30,14 @@ class Obstacle {
       int x = animal.getInt("X");
       int y = animal.getInt("Y");
 
-      println(orientation.equals("verticale"));
-
-      if (orientation.equals("verticale")) {
-        obstacle.vertex(y, x);
-      } else {
-        obstacle.vertex(x, y);
-      }
-
-      //console.log(ob
+      obstacle.vertex(x, y);
     }
 
-    // for(Coord coor : coordinates){
-    //   obstacle.vertex(coor.x, coor.y);
-    // }
+    obstacle.setPosition(position.getX(), position.getY());
+    obstacle.setStatic(true);
+    obstacle.setGrabbable(false);
+    obstacle.setRotation(radians(this.rotation));
+    obstacle.attachImage(texture);
 
     m_world.add(obstacle);
   }
