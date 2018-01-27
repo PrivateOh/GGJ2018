@@ -19,7 +19,7 @@ public void createLevel(int number) {
 
 private void defineLevel1() {
   //Player
-  this.player = new Player(new Coord(width/2, height/2), 1, 20);
+  this.player = new Player(new Coord(2*coeffX,1*coeffY), 1, 20);
 
   //Enemy
   this.m_ennemys.add(new Ennemy(new Coord(38*coeffX,18*coeffY), 1, 20, 200,90));

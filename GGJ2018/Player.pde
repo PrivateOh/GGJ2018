@@ -2,6 +2,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
 
   private Boolean isAlive;
   private FCircle player;
+  private float speed = 180;
   private Coord force;
   private int rushRange = 350;
   private int cptChangeDirection = 0;
@@ -69,16 +70,16 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
     switch(keyCode) {
     case LEFT: //GAUCHE
 
-      this.setForceX(-500);
+      this.setForceX(-speed);
       break;
     case RIGHT://DROITE
-      this.setForceX(500);
+      this.setForceX(speed);
       break;
     case UP: //HAUT
-      this.setForceY(-500);
+      this.setForceY(-speed);
       break;
     case DOWN: //BAS
-      this.setForceY(500);
+      this.setForceY(speed);
       break;
     }
     this.updateForce();
@@ -156,5 +157,8 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>//
         this.rushTo(new Coord(mouseX, mouseY));
       }
     }
+  }
+  FBody getObject (){
+    return this.player;
   }
 }
