@@ -8,6 +8,7 @@
 import fisica.*;
 
 public static final int COLOR_BK = 0;
+public Player player = null;
 
 // World
 public FWorld m_world;
