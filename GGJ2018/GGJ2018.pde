@@ -32,6 +32,8 @@ void draw() {
   background(COLOR_BK);
   this.m_world.step();
   this.m_world.draw();
+  this.player.detectObstacle();
+  
 }
 
 /* Create the world and init parameters */
