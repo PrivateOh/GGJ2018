@@ -1,4 +1,4 @@
-  class Obstacle extends Entity {
+class Obstacle extends Entity {
 
   private FPoly obstacle;
   private JSONObject json;
@@ -12,13 +12,16 @@
   public Obstacle(String type, Coord position, float rotation) {
     super(position, 10000, true);
     obstacle = new FPoly();
-    obstacle.setGroupIndex(Obstacle.Id);
+    if (type != "door")
+      obstacle.setGroupIndex(Obstacle.Id);
+    else
+      obstacle.setGroupIndex(0);
     obstacle.setRestitution(0);
     this.type = type;
     this.rotation = rotation;
     this.position = position;
   }
-  
+
   public boolean getPossessed() {
     return this.possessed;
   }
@@ -52,7 +55,6 @@
     obstacle.attachImage(texture);
 
     m_world.add(obstacle);
-
   }
 
   void setCoord(Coord position) {
@@ -62,7 +64,7 @@
   Coord getCoord() {
     return this.position;
   }
-  
+
   void setRotation(float rotation) {
     this.rotation = rotation;
   }
@@ -70,7 +72,7 @@
   float getRotation() {
     return this.rotation;
   }
-  
+
   void setType(String type) {
     this.type = type;
   }
@@ -78,8 +80,8 @@
   String getType() {
     return this.type;
   }
-  
-  FBody getObstacle(){
+
+  FBody getObstacle() {
     return this.obstacle;
   }
 }
