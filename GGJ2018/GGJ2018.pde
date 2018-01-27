@@ -35,7 +35,10 @@ void draw() {
   }
   this.m_world.step();
   this.m_world.draw();
-  this.player.detectObstacle();
+  if (this.player != null){
+    this.player.detectObstacle();
+    this.player.draw();
+  }
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
   }

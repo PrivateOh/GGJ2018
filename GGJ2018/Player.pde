@@ -42,6 +42,12 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
     }
   }
 
+  public void draw () {
+    noFill();
+    stroke(25);
+    ellipse(this.player.getX(), this.player.getY(), 240, 240);
+  }
+
   public void keyPressed(int keyCode) {
     switch(keyCode) {
     case LEFT: //GAUCHE
@@ -77,5 +83,26 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
       break;
     }
     this.updateForce();
+  }
+
+  public void rushTo (Coord coord) {
+    while ( coord.getX() != this.player.getX() && coord.getY() != this.player.getY()) {
+      if ( coord.getX()-this.player.getX() > 0) {
+        this.setForceX(1500);
+      } else {
+        if (coord.getX()-this.player.getX() < 0) {
+          this.setForceX(-1500);
+        } else
+          this.setForceX(0);
+      }
+      if ( coord.getY()-this.player.getY() > 0) {
+        this.setForceY(1500);
+      } else {
+        if (coord.getY()-this.player.getY() < 0) {
+          this.setForceY(-1500);
+        } else
+          this.setForceY(0);
+      }
+    }
   }
 }
