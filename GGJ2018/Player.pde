@@ -1,4 +1,4 @@
-class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -47,8 +47,8 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   public boolean detectObstacle () {
     FBody fb = m_world.getBody(mouseX, mouseY);
-    if(fb != null) {
-      if(fb.getGroupIndex() != Obstacle.Id) return true;
+    if (fb != null) {
+      if (fb.getGroupIndex() != Obstacle.Id) return true;
     }
     FRaycastResult result = new FRaycastResult();
 
@@ -79,12 +79,8 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     this.player.setSensor(false);
     switch(keyCode) {
     case LEFT: //GAUCHE
-<<<<<<< HEAD
-      this.setForceX(-500);
-=======
 
       this.setForceX(-speed);
->>>>>>> fd0c228f67d0444e22aa3ef36be1eee9eec414e6
       break;
     case RIGHT://DROITE
       this.setForceX(speed);
@@ -164,10 +160,10 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   void mousePressed() {
     detectObstacle();
     FBody fb = m_world.getBody(mouseX, mouseY);
-    if(fb != null) {
-      if(fb.getGroupIndex() != Obstacle.Id) return;
+    if (fb != null) {
+      if (fb.getGroupIndex() != Obstacle.Id) return;
     }
-    
+
     if ((abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2)) {
       if (this.possed) {
         this.possed = this.isObject;
@@ -179,7 +175,7 @@ class Player  extends Entity { //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       }
     }
   }
-  FBody getObject (){
+  FBody getObject () {
     return this.player;
   }
 }
