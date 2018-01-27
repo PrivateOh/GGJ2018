@@ -41,6 +41,7 @@
     obstacle.attachImage(texture);
 
     m_world.add(obstacle);
+
   }
 
   void setCoord(Coord position) {
