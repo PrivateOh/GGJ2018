@@ -15,8 +15,8 @@ class Wall {
     wall.vertex(start.x, start.y);
     wall.setGrabbable(false);
     wall.setStatic(true);
-    wall.setStrokeColor(color(COLOR_WH));
-    wall.setFillColor(color(COLOR_WH));
+    wall.setStrokeColor(color(COLOR_GR));
+    wall.setFillColor(color(COLOR_GR));
     wall.setRestitution(0);
     m_world.add(wall);
   }

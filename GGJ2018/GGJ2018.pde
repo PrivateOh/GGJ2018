@@ -15,6 +15,8 @@ import fisica.*;
 
 public static final int COLOR_BK = 0;
 public static final int COLOR_WH = 255;
+public static final int COLOR_GR = 145;
+public FPoly endLevel;
 public Player player = null;
 public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
@@ -46,16 +48,20 @@ void draw() {
   }
   this.m_world.step();
   this.m_world.draw();
-  if (this.player != null){
+  if (this.player != null) {
     //this.player.detectObstacle();
     this.player.draw();
   }
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
   }
-  
-  for(Obstacle obstacle : m_obstacles) {
+
+  for (Obstacle obstacle : m_obstacles) {
     obstacle.setPossessed(obstacle.obstacle.isSensor());
+  }
+  if (player.getObject().isTouchingBody(endLevel)) {
+    currentLevel++;
+    loadLevel(currentLevel);
   }
   drawCursor();
 }

@@ -8,12 +8,14 @@ class Player  extends Entity { //<>//
   private int cptChangeDirection = 0;
   private Coord coordToRush;
   private boolean possed = false;
+  private PImage texture;
   private boolean isRushing = false;
   private boolean isObject = false;
   private FBody obstaclePrec = null;
 
   public Player(Coord coord, int id, float size) {
     super(coord, id, false);
+    texture = loadImage("/data/textures/feux_follet.png");
     this.force = new Coord(0, 0);
     this.coordToRush = new Coord (0, 0);
     this.player = new FCircle(size);
@@ -21,6 +23,7 @@ class Player  extends Entity { //<>//
     this.player.setRestitution(0);
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
     this.player.setGroupIndex(0);
+    this.player.attachImage(texture);
     m_world.add(this.player);
   }
 
@@ -64,12 +67,12 @@ class Player  extends Entity { //<>//
   }
 
   public void draw () {
-    
+
     if (!this.possed || this.isRushing)
       player.setDrawable(true);
     else
       player.setDrawable(false);
-     noFill();
+    noFill();
     stroke(100);
     if (!this.possed) {
       ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
@@ -112,6 +115,15 @@ class Player  extends Entity { //<>//
       break;
     case DOWN: //BAS
       this.setForceY(0);
+      break;
+    case 'E':
+      for (Obstacle o : m_obstacles) {
+        if (o.getPossessed() && o.getType() == "interrupteur") {
+          Interrupteur inter;
+          inter = (Interrupteur) o;
+          inter.openDoor();
+        }
+      }
       break;
     }
     this.updateForce();
