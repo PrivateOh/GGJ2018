@@ -1,4 +1,4 @@
-class Player  extends Entity { //<>// //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -64,7 +64,10 @@ class Player  extends Entity { //<>// //<>// //<>//
   }
 
   public void draw () {
-    player.setDrawable(!this.possed);
+    if (this.possed && this.isRushing)
+      player.setDrawable(true);
+    else
+      player.setDrawable(true);
     noFill();
     stroke(100);
     if (!this.possed) {
