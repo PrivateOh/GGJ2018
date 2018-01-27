@@ -29,6 +29,12 @@ void draw() {
   background(COLOR_BK);
   this.m_world.step();
   this.m_world.draw();
+  
+  for( FBody o : (ArrayList<FBody>)m_world.getBodies()){
+      o.setFill(255,255,255);
+  }
+  this.player.detectObstacle();
+  
 }
 
 /* Create the world and init parameters */

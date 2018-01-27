@@ -1,14 +1,16 @@
-class Player  extends Entity { //<>// //<>//
+class Player  extends Entity { //<>// //<>// //<>// //<>// //<>//
 
   private Boolean isAlive;
   private FCircle player;
   private Coord force;
-
+  private FBody listDetected[];
   public Player(Coord coord, int id, float size) {
     super(coord, id);
     this.isAlive = true;
+
     this.force = new Coord(0, 0);
     this.player = new FCircle(size);
+    this.listDetected = new FBody[3];
     this.player.setPosition(this.getCoord().getX(), this.getCoord().getY());
     //this.player.setStatic(true);
     m_world.add(this.player);
@@ -32,6 +34,16 @@ class Player  extends Entity { //<>// //<>//
 
   public void setForceY (float y) {
     this.force.setY(y);
+  }
+
+  public void detectObstacle () {
+    FRaycastResult result = new FRaycastResult();
+    FBody b = m_world.raycastOne(this.player.getX(), this.player.getY(), mouseX, mouseY, result, false);
+    stroke(120);
+    line(this.player.getX(), this.player.getY(), mouseX, mouseY);
+    if (b != null) {
+      b.setFill(120, 255, 0);
+    }
   }
 
   public void keyPressed(int keyCode) {
