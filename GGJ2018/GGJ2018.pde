@@ -18,7 +18,7 @@ void setup() {
 
   Fisica.init(this);
   this.initWorld();
-  Player p = new Player(new Coord(100.0,100.0), 1, 10);
+  this.loadLevel(1);
 }
 
 void draw() {
@@ -31,11 +31,11 @@ void draw() {
 void initWorld() {
   this.m_world = new FWorld();
   this.m_world.setGravity(0, 0);
-  this.loadLevel(1);
 }
 
 /* Load the level passed in parameter */
 void loadLevel(int number) {
-  this.m_world.clear();
-  createLevel(number);
+  this.initWorld();
+  /* File: Level.ine */
+  this.createLevel(number);
 }

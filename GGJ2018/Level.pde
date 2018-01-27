@@ -1,35 +1,17 @@
-class Level {
-
-  private int number;
-  private ArrayList<Entity> entities;
-
-  public Level(int number) {
-    this.number = number;
-  }
-
-  public int getNumber() {
-    return this.number;
-  }
-  
-  public ArrayList<Entity> getEntities() {
-    return this.entities;
-  }
-}
-
-public Level createLevel(int number) {
-  Level level = new Level(number);
+public void createLevel(int number) {
   switch (number) {
   case 1:
-    defineLevel1(level);
+    defineLevel1();
     break;
   case 2:
-    defineLevel2(level);
+    defineLevel2();
     break;
   }
-  return level;
 }
 
-private void defineLevel1(Level level) {
+private void defineLevel1() {
+  new Player(new Coord(width/2, height/2), 1, 60);
 }
-private void defineLevel2(Level level) {
+private void defineLevel2() {
+  new Player(new Coord(width/3, height/5), 1, 40);
 }
