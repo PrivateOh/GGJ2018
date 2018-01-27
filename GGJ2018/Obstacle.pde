@@ -17,7 +17,7 @@
 
   void drawObstacle() {
 
-    //²texture = loadImage("/data/textures/" + type + ".jpeg");
+    texture = loadImage("/data/textures/" + type + ".jpeg");
 
     json = loadJSONObject("obstacles.json");
 
@@ -38,7 +38,7 @@
     obstacle.setStatic(true);
     obstacle.setGrabbable(false);
     obstacle.setRotation(radians(getRotation()));
-   // obstacle.attachImage(texture);
+    obstacle.attachImage(texture);
 
     m_world.add(obstacle);
   }
