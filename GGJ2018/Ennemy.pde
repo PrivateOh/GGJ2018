@@ -45,7 +45,7 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      if (millis() - this.timer> 500) {
+      if (millis() - this.timer > 500) {
         this.timer = millis();
         this.rotate(sensPos == 1 ? this.rotations.get(indexPos) : (this.rotations.get(indexPos)+180)%360);
         rushTo(this.positions.get(indexPos));
