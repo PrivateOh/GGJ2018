@@ -1,4 +1,4 @@
-class Player  extends Entity { //<>//
+class Player  extends Entity { //<>// //<>//
 
   private boolean isAlive = true;
   private FCircle player;
@@ -10,6 +10,7 @@ class Player  extends Entity { //<>//
   private boolean possed = false;
   private boolean isRushing = false;
   private boolean isObject = false;
+  private FBody obstaclePrec = null;
 
   public Player(Coord coord, int id, float size) {
     super(coord, id, false);
@@ -76,7 +77,6 @@ class Player  extends Entity { //<>//
 
   public void keyPressed(int keyCode) {
     if (this.possed) return;
-    this.player.setSensor(false);
     switch(keyCode) {
     case LEFT: //GAUCHE
       this.setForceX(-speed);
@@ -95,7 +95,6 @@ class Player  extends Entity { //<>//
   }
 
   public void keyReleased(int keyCode) {
-    this.player.setSensor(true);
     switch(keyCode) {
     case LEFT: //GAUCHE
       this.setForceX(0);
@@ -166,11 +165,21 @@ class Player  extends Entity { //<>//
     if ((abs(sqrt(pow(mouseX-this.player.getX(), 2)+pow(mouseY-this.player.getY(), 2))) < rushRange/2)) {
       if (this.possed) {
         this.possed = this.isObject;
+        if (obstaclePrec !=null) {
+          obstaclePrec.setSensor(false);
+        }
         this.rushTo(new Coord(mouseX, mouseY));
       }
       if (!this.possed && this.isObject) {
         this.possed = this.isObject ;
+        if (obstaclePrec !=null) {
+          obstaclePrec.setSensor(false);
+        }
         this.rushTo(new Coord(mouseX, mouseY));
+      }
+      if (this.isObject && fb != null) {
+        fb.setSensor(true);
+        obstaclePrec = fb;
       }
     }
   }
