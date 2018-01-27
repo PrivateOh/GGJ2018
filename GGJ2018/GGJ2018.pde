@@ -20,6 +20,9 @@ void setup() {
   Fisica.init(this);
   this.initWorld();
   this.loadLevel(1);
+  
+  Obstacle o = new Obstacle("verticale", color(255, 255, 255, 255));
+  o.drawObstacle();
 }
 
 void draw() {

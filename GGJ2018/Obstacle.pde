@@ -1,9 +1,9 @@
 class Obstacle {
   
-  public Obstacle() {
     
 
  
+    obstacle.setFillColor(color(255, 255, 255, 255));
   }
 
   
