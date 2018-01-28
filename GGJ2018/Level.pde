@@ -29,15 +29,14 @@ private void defineLevel1() {
   coords.add(caseIntoCoord(AA, 15));
   coords.add(caseIntoCoord(AA, 20));
   coords.add(caseIntoCoord(X, 20));
-  
+
   ArrayList<Integer> rotations = new ArrayList<Integer>();
   rotations.add(0);
   rotations.add(90);
   rotations.add(180);
   rotations.add(90);
   rotations.add(270);
-  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200,0, coords, rotations));
-
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200, 0, coords, rotations));
   //Wall
   //Horizontaux
   this.m_walls.add(new Wall(caseIntoCoord(B, 2), caseIntoCoord(M, 3)));
@@ -84,8 +83,8 @@ private void defineLevel1() {
   this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(AF, 10), 0));
   this.m_obstacles.add(new Interrupteur(caseIntoCoord(AF, 22+0.2), 180, m_obstacles.get(m_obstacles.size()-1)));
 
-  //Texte
-  
+
+
 
   //Fin de niveau
   endLevel = new FPoly();
@@ -98,8 +97,8 @@ private void defineLevel1() {
   endLevel.vertex(start.x, start.y);
   endLevel.setGrabbable(false);
   endLevel.setStatic(true);
-  endLevel.setStrokeColor(color(255,23,23));
-  endLevel.setFillColor(color(color(255,23,23)));
+  endLevel.setStrokeColor(color(255, 23, 23));
+  endLevel.setFillColor(color(color(255, 23, 23)));
   endLevel.setRestitution(0);
   m_world.add(endLevel);
   for (Obstacle obs : m_obstacles) {
@@ -108,7 +107,7 @@ private void defineLevel1() {
 }
 private void defineLevel2() {
   this.player = new Player(caseIntoCoord(C, 4), 1, 20);
-  
+
   //Wall
   //Horizontaux
   this.m_walls.add(new Wall(caseIntoCoord(B, 2), caseIntoCoord(AP, 3)));
@@ -120,7 +119,7 @@ private void defineLevel2() {
   this.m_walls.add(new Wall(caseIntoCoord(B, 3), caseIntoCoord(C, 18)));
   this.m_walls.add(new Wall(caseIntoCoord(AO, 3), caseIntoCoord(AP, 18)));
   this.m_walls.add(new Wall(caseIntoCoord(AG, 11), caseIntoCoord(AH, 16)));
-  
+
   //Fin de niveau
   endLevel = new FPoly();
   Coord start = caseIntoCoord(B-0.5, 14);
@@ -132,14 +131,13 @@ private void defineLevel2() {
   endLevel.vertex(start.x, start.y);
   endLevel.setGrabbable(false);
   endLevel.setStatic(true);
-  endLevel.setStrokeColor(color(255,23,23));
-  endLevel.setFillColor(color(color(255,23,23)));
+  endLevel.setStrokeColor(color(255, 23, 23));
+  endLevel.setFillColor(color(color(255, 23, 23)));
   endLevel.setRestitution(0);
   m_world.add(endLevel);
   for (Obstacle obs : m_obstacles) {
     obs.drawObstacle();
   }
-  
 }
 
 private Coord caseIntoCoord (float lettre, float number) {
