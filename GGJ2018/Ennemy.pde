@@ -15,8 +15,10 @@ class Ennemy extends Entity {
   private ArrayList<Integer> rotations;
   private int indexPos = 1;
   private int sensPos = 1;
+  private PImage texture;
+  private boolean radarNeedReset = false;
 
-  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations) {
+  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
     super(coord, id, false);
 
     // Coords
@@ -36,8 +38,12 @@ class Ennemy extends Entity {
     //this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
     //this.m_ennemy.setRotation(60);
-    this.m_ennemy.setRotation(rotate);
+    this.rotate((int)rotate);
     radarAngle = 90 + m_ennemy.getRotation();
+
+    // Texture
+    this.texture = loadImage(imgPath);
+    m_ennemy.attachImage(this.texture);
     m_world.add(this.m_ennemy);
   }
 
@@ -45,21 +51,39 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      if (millis() - this.timer > 500) {
-        this.timer = millis();
-        this.rotate(sensPos == 1 ? this.rotations.get(indexPos) : (this.rotations.get(indexPos)+180)%360);
-        rushTo(this.positions.get(indexPos));
-        indexPos += sensPos;
-        if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
+      radarNeedReset = true;
+      int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? this.rotations.get(0) : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
+      if (indexPos == 0) {
+        rot = 180-rot;
       }
+
+      this.rotate((rot));
+      float ennemyRot = degrees(m_ennemy.getRotation());
+      if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270.0) {
+        radarAngle = (270) + degrees(m_ennemy.getRotation());
+      } else {
+        radarAngle = (90) + degrees(m_ennemy.getRotation());
+      }
+      rushTo(this.positions.get(indexPos));
+      indexPos += sensPos;
+      if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
     }
   }
 
   public void detectObstacle () {
-    if (radarAngle <= 60 + m_ennemy.getRotation()) {
-      radarSens = 1;
-    } else if (radarAngle >= 120 + m_ennemy.getRotation()) {
-      radarSens = -1;
+    if (degrees(m_ennemy.getRotation()) != 90.0 && degrees(m_ennemy.getRotation()) != 270) {
+      if (radarAngle <= 60 + degrees(m_ennemy.getRotation())) {
+        radarSens = 1;
+      } else if (radarAngle >= 120 + degrees(m_ennemy.getRotation())) {
+        radarSens = -1;
+      }
+    }
+    if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270) {
+      if (radarAngle <= 240 + degrees(m_ennemy.getRotation())) {
+        radarSens = 1;
+      } else if (radarAngle >= 300 + degrees(m_ennemy.getRotation())) {
+        radarSens = -1;
+      }
     }
 
     float x = this.m_ennemy.getX();
@@ -130,12 +154,11 @@ class Ennemy extends Entity {
 
   // Change velocity
   public void updateForce () {
-    println("Print velocity:\n x --> " + this.force.getX()+"\n y --> " + this.force.getY());
     this.m_ennemy.setVelocity(this.force.getX(), this.force.getY());
   }
 
 
   public void rotate (int degres) {
-    this.m_ennemy.setRotation(degres);
+    this.m_ennemy.setRotation(radians(degres));
   }
 }
