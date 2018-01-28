@@ -15,6 +15,7 @@ class Ennemy extends Entity {
   private int indexPos = 1;
   private int sensPos = 1;
   private PImage texture;
+  private float speed = 100;
 
   public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
     super(coord, id, false);
@@ -69,16 +70,16 @@ class Ennemy extends Entity {
   public void detectObstacle () {
     if (degrees(m_ennemy.getRotation()) != 90.0 && degrees(m_ennemy.getRotation()) != 270) {
       if (radarAngle <= 60 + degrees(m_ennemy.getRotation())) {
-        radarSens = 3;
+        radarSens = 5;
       } else if (radarAngle >= 120 + degrees(m_ennemy.getRotation())) {
-        radarSens = -3;
+        radarSens = -5;
       }
     }
     if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270) {
       if (radarAngle <= 240 + degrees(m_ennemy.getRotation())) {
-        radarSens = 3;
+        radarSens = 5;
       } else if (radarAngle >= 300 + degrees(m_ennemy.getRotation())) {
-        radarSens = -3;
+        radarSens = -5;
       }
     }
 
@@ -102,26 +103,26 @@ class Ennemy extends Entity {
 
   public void rushing () {
     if ( this.coordToRush.getX()-this.m_ennemy.getX() < -10 ) {
-      if (this.force.getX() != -50)
+      if (this.force.getX() != -speed)
         cptChangeDirection++;
-      this.setForceX(-50);
+      this.setForceX(-speed);
     } else {
       if (this.coordToRush.getX()-this.m_ennemy.getX() > 10) {
-        if (this.force.getX() != 50)
+        if (this.force.getX() != speed)
           cptChangeDirection++;
-        this.setForceX(50);
+        this.setForceX(speed);
       } else
         this.setForceX(0);
     }
     if ( this.coordToRush.getY()-this.m_ennemy.getY() < -10) {
-      if (this.force.getY() != -50)
+      if (this.force.getY() != -speed)
         cptChangeDirection++;
-      this.setForceY(-50);
+      this.setForceY(-speed);
     } else {
       if (this.coordToRush.getY()-this.m_ennemy.getY() > 10) {
-        if (this.force.getY() != 50)
+        if (this.force.getY() != speed)
           cptChangeDirection++;
-        this.setForceY(50);
+        this.setForceY(speed);
       } else
         this.setForceY(0);
     }
