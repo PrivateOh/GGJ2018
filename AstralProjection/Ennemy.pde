@@ -53,7 +53,7 @@ class Ennemy extends Entity {
     } else {
       int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? 0 : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
       if (indexPos == 0) {
-        rot = abs(180-rot);
+        rot = abs(180+rot)%360;
       }
 
       this.rotate((rot));
