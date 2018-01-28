@@ -6,7 +6,6 @@ class Ennemy extends Entity {
   private float detectRange;
   private FCircle m_ennemy;
   private int cptChangeDirection = 0;
-  private float timer = 0.0;
 
   private Coord force;
   private Coord coordToRush;
@@ -16,7 +15,6 @@ class Ennemy extends Entity {
   private int indexPos = 1;
   private int sensPos = 1;
   private PImage texture;
-  private boolean radarNeedReset = false;
 
   public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
     super(coord, id, false);
@@ -51,14 +49,12 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      radarNeedReset = true;
       int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? this.rotations.get(0) : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
       if (indexPos == 0) {
         rot = 180-rot;
       }
 
       this.rotate((rot));
-      float ennemyRot = degrees(m_ennemy.getRotation());
       if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270.0) {
         radarAngle = (270) + degrees(m_ennemy.getRotation());
       } else {
