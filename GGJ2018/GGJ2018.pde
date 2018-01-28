@@ -37,14 +37,14 @@ void setup() {
 
   // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
 
-  currentLevel = 2;
+  currentLevel = 1;
   Fisica.init(this);
   noCursor();
   this.m_ennemys = new ArrayList<Ennemy>();
   this.m_walls = new ArrayList<Wall>();
   this.m_obstacles = new ArrayList<Obstacle>();
   this.initWorld();
-  this.loadLevel(2);
+  this.loadLevel(currentLevel);
 }
 
 void draw() {
