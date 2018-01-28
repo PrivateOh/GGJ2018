@@ -16,7 +16,7 @@ class Wall {
     FBox walltempo;
     if (t_x > t_y) {
       for (i=0; i<t_x/coeffX; i++) {
-        walltempo = new FBox(40, 40);
+        walltempo = new FBox(coeffX, coeffY);
         walltempo.setPosition(start.x+i*coeffX, start.y);
 
         walls.add(walltempo);
@@ -30,7 +30,7 @@ class Wall {
       }
     } else {
       for (i=0; i<t_y/coeffY; i++) {
-        walltempo = new FBox(40, 40);
+        walltempo = new FBox(coeffX, coeffY);
         walltempo.setPosition(start.x, start.y+i*coeffY);
 
         walls.add(walltempo);
