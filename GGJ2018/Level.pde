@@ -103,7 +103,7 @@ private void defineLevel2() {
   rotationsEnemy.add(180);
   rotationsEnemy.add(270);
   rotationsEnemy.add(90);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
   
   //Enemy 2
   
@@ -118,7 +118,7 @@ private void defineLevel2() {
   rotationsEnemy.add(180);
   rotationsEnemy.add(90);
   rotationsEnemy.add(270);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
 
   //Enemy 3
   coordsEnemy = new ArrayList<Coord>();
@@ -140,7 +140,7 @@ private void defineLevel2() {
   rotationsEnemy.add(270);
   rotationsEnemy.add(0);
   rotationsEnemy.add(180);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
 
   //Wall
   //Horizontaux

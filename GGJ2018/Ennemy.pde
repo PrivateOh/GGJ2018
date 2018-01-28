@@ -70,16 +70,16 @@ class Ennemy extends Entity {
   public void detectObstacle () {
     if (degrees(m_ennemy.getRotation()) != 90.0 && degrees(m_ennemy.getRotation()) != 270) {
       if (radarAngle <= 60 + degrees(m_ennemy.getRotation())) {
-        radarSens = 3;
+        radarSens = 5;
       } else if (radarAngle >= 120 + degrees(m_ennemy.getRotation())) {
-        radarSens = -3;
+        radarSens = -5;
       }
     }
     if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270) {
       if (radarAngle <= 240 + degrees(m_ennemy.getRotation())) {
-        radarSens = 3;
+        radarSens = 5;
       } else if (radarAngle >= 300 + degrees(m_ennemy.getRotation())) {
-        radarSens = -3;
+        radarSens = -5;
       }
     }
 
