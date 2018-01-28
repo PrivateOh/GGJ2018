@@ -32,7 +32,16 @@ private void defineLevel1() {
 
   ArrayList<Integer> rotations = new ArrayList<Integer>();
   rotations.add(0);
+<<<<<<< HEAD
+  rotations.add(270);
+  rotations.add(180);
+  rotations.add(270);
+  rotations.add(90);
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200,0, coords, rotations, "/data/textures/enemy20x20.png"));
+
+=======
   //this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200, 0, coords, rotations));
+>>>>>>> 1d24166d2e4ef10c7aedd7b6055dc8422f7029b3
   //Wall
   //Horizontaux
   this.m_walls.add(new Wall(caseIntoCoord(G, 4), caseIntoCoord(AA, 5)));
