@@ -49,7 +49,7 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? this.rotations.get(0) : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
+      int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? 0 : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
       if (indexPos == 0) {
         rot = 180-rot;
       }

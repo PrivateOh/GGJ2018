@@ -27,20 +27,26 @@ private void defineLevel1() {
 
   //Enemy
   ArrayList<Coord> coords = new ArrayList<Coord>();
-  coords.add(caseIntoCoord(AF, 20));
-
+  coords.add(caseIntoCoord(Y, 6));
+  coords.add(caseIntoCoord(Y, 11));
+  coords.add(caseIntoCoord(V, 11));
+  coords.add(caseIntoCoord(V, 12));
+  coords.add(caseIntoCoord(P, 12));
+  coords.add(caseIntoCoord(P, 11));
+  coords.add(caseIntoCoord(J, 11));
+  coords.add(caseIntoCoord(J, 12));
 
   ArrayList<Integer> rotations = new ArrayList<Integer>();
-  rotations.add(0);
+  rotations.add(180);
   rotations.add(270);
   rotations.add(180);
   rotations.add(270);
-  rotations.add(90);
-  //this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200,0, coords, rotations, "/data/textures/enemy20x20.png"));
-<<<<<<< HEAD
+  rotations.add(0);
+  rotations.add(270);
+  rotations.add(180);
+  rotations.add(0);
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 100,0, coords, rotations, "/data/textures/enemy20x20.png"));
 
-=======
->>>>>>> 6645bb0e24dccdc32eac56c4db9107739433e646
   //Wall
   //Horizontaux
   this.m_walls.add(new Wall(caseIntoCoord(G, 4), caseIntoCoord(AA, 5)));
@@ -82,6 +88,29 @@ private void defineLevel1() {
 }
 private void defineLevel2() {
   this.player = new Player(caseIntoCoord(C, 4), 1, 20);
+
+  //Enemy
+  ArrayList<Coord> coordsEnemy1 = new ArrayList<Coord>();
+  coordsEnemy1.add(caseIntoCoord(D, 36));
+  coordsEnemy1.add(caseIntoCoord(D, 34));
+  coordsEnemy1.add(caseIntoCoord(R, 34));
+  coordsEnemy1.add(caseIntoCoord(R, 38));
+  coordsEnemy1.add(caseIntoCoord(P, 12));
+  coordsEnemy1.add(caseIntoCoord(P, 11));
+  coordsEnemy1.add(caseIntoCoord(J, 11));
+  coordsEnemy1.add(caseIntoCoord(J, 12));
+
+  ArrayList<Integer> rotations = new ArrayList<Integer>();
+  rotations.add(180);
+  rotations.add(270);
+  rotations.add(180);
+  rotations.add(270);
+  rotations.add(0);
+  rotations.add(270);
+  rotations.add(180);
+  rotations.add(0);
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 100,0, coords, rotations, "/data/textures/enemy20x20.png"));
+
 
   //Wall
   //Horizontaux
