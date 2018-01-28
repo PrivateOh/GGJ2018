@@ -44,7 +44,7 @@ void setup() {
   this.m_walls = new ArrayList<Wall>();
   this.m_obstacles = new ArrayList<Obstacle>();
   this.initWorld();
-  this.loadLevel(1);
+  this.loadLevel(2);
 }
 
 void draw() {

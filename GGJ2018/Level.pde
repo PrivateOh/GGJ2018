@@ -89,28 +89,58 @@ private void defineLevel1() {
 private void defineLevel2() {
   this.player = new Player(caseIntoCoord(C, 4), 1, 20);
 
-  //Enemy
-  ArrayList<Coord> coordsEnemy1 = new ArrayList<Coord>();
-  coordsEnemy1.add(caseIntoCoord(D, 36));
-  coordsEnemy1.add(caseIntoCoord(D, 34));
-  coordsEnemy1.add(caseIntoCoord(R, 34));
-  coordsEnemy1.add(caseIntoCoord(R, 38));
-  coordsEnemy1.add(caseIntoCoord(P, 12));
-  coordsEnemy1.add(caseIntoCoord(P, 11));
-  coordsEnemy1.add(caseIntoCoord(J, 11));
-  coordsEnemy1.add(caseIntoCoord(J, 12));
+  //Enemy 1
+  ArrayList<Coord> coordsEnemy = new ArrayList<Coord>();
+  coordsEnemy.add(caseIntoCoord(G, 6));
+  coordsEnemy.add(caseIntoCoord(G, 4));
+  coordsEnemy.add(caseIntoCoord(R, 4));
+  coordsEnemy.add(caseIntoCoord(R, 8));
+  coordsEnemy.add(caseIntoCoord(D, 8));
 
-  ArrayList<Integer> rotations = new ArrayList<Integer>();
-  rotations.add(180);
-  rotations.add(270);
-  rotations.add(180);
-  rotations.add(270);
-  rotations.add(0);
-  rotations.add(270);
-  rotations.add(180);
-  rotations.add(0);
-  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 100,0, coords, rotations, "/data/textures/enemy20x20.png"));
+  ArrayList<Integer> rotationsEnemy = new ArrayList<Integer>();
+  rotationsEnemy.add(0);
+  rotationsEnemy.add(90);
+  rotationsEnemy.add(180);
+  rotationsEnemy.add(270);
+  rotationsEnemy.add(90);
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
+  
+  //Enemy 2
+  
+  coordsEnemy  = new ArrayList<Coord>();
+  coordsEnemy.add(caseIntoCoord(AL, 4));
+  coordsEnemy.add(caseIntoCoord(T, 4));
+  coordsEnemy.add(caseIntoCoord(T, 8));
+  coordsEnemy.add(caseIntoCoord(AL, 8));
 
+  rotationsEnemy  = new ArrayList<Integer>();
+  rotationsEnemy.add(270);
+  rotationsEnemy.add(180);
+  rotationsEnemy.add(90);
+  rotationsEnemy.add(270);
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
+
+  //Enemy 3
+  coordsEnemy = new ArrayList<Coord>();
+  coordsEnemy.add(caseIntoCoord(AE, 12));
+  coordsEnemy.add(caseIntoCoord(AE, 16));
+  coordsEnemy.add(caseIntoCoord(W, 16));
+  coordsEnemy.add(caseIntoCoord(W, 12));
+  coordsEnemy.add(caseIntoCoord(N, 12));
+  coordsEnemy.add(caseIntoCoord(N, 16));
+  coordsEnemy.add(caseIntoCoord(D, 16));
+  coordsEnemy.add(caseIntoCoord(D, 12));
+
+  rotationsEnemy = new ArrayList<Integer>();
+  rotationsEnemy.add(180);
+  rotationsEnemy.add(270);
+  rotationsEnemy.add(0);
+  rotationsEnemy.add(270);
+  rotationsEnemy.add(180);
+  rotationsEnemy.add(270);
+  rotationsEnemy.add(0);
+  rotationsEnemy.add(180);
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy20x20.png"));
 
   //Wall
   //Horizontaux
