@@ -37,6 +37,10 @@ class Player  extends Entity { //<>//
     this.isAlive = a;
   }
 
+  public boolean getPossed () {
+    return this.possed;
+  }
+
   public void setForceX (float x) {
     this.force.setX(x);
   }
@@ -74,8 +78,9 @@ class Player  extends Entity { //<>//
       player.setDrawable(false);
     noFill();
     stroke(100);
-      ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
-   
+    ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
+    
+
 
     if (this.isRushing) {
       rushing();
@@ -135,24 +140,24 @@ class Player  extends Entity { //<>//
   }
 
   public void rushing () {
-    if ( this.coordToRush.getX()-this.player.getX() < -10 ) {
+    if ( this.coordToRush.getX()-this.player.getX() < -1 ) {
       if (this.force.getX() != -1300)
         cptChangeDirection++;
       this.setForceX(-1300);
     } else {
-      if (this.coordToRush.getX()-this.player.getX() > 10) {
+      if (this.coordToRush.getX()-this.player.getX() > 1) {
         if (this.force.getX() != 1300)
           cptChangeDirection++;
         this.setForceX(1300);
       } else
         this.setForceX(0);
     }
-    if ( this.coordToRush.getY()-this.player.getY() < -10) {
+    if ( this.coordToRush.getY()-this.player.getY() < -1) {
       if (this.force.getY() != -1300)
         cptChangeDirection++;
       this.setForceY(-1300);
     } else {
-      if (this.coordToRush.getY()-this.player.getY() > 10) {
+      if (this.coordToRush.getY()-this.player.getY() > 1) {
         if (this.force.getY() != 1300)
           cptChangeDirection++;
         this.setForceY(1300);

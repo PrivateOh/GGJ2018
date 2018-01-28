@@ -6,7 +6,6 @@ class Ennemy extends Entity {
   private float detectRange;
   private FCircle m_ennemy;
   private int cptChangeDirection = 0;
-  private float timer = 0.0;
 
   private Coord force;
   private Coord coordToRush;
@@ -15,8 +14,10 @@ class Ennemy extends Entity {
   private ArrayList<Integer> rotations;
   private int indexPos = 1;
   private int sensPos = 1;
+  private PImage texture;
+  private float speed = 155;
 
-  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations) {
+  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
     super(coord, id, false);
 
     // Coords
@@ -33,11 +34,16 @@ class Ennemy extends Entity {
     this.m_ennemy = new FCircle(size);
     this.m_ennemy.setPosition(x, y);
     this.m_ennemy.setGrabbable(false);
+    m_ennemy.setRotatable(false);
     //this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
     //this.m_ennemy.setRotation(60);
-    this.m_ennemy.setRotation(rotate);
+    this.rotate((int)rotate);
     radarAngle = 90 + m_ennemy.getRotation();
+
+    // Texture
+    this.texture = loadImage(imgPath);
+    m_ennemy.attachImage(this.texture);
     m_world.add(this.m_ennemy);
   }
 
@@ -45,21 +51,37 @@ class Ennemy extends Entity {
     if (this.isRushing) {
       this.rushing();
     } else {
-      if (millis() - this.timer> 500) {
-        this.timer = millis();
-        this.rotate(sensPos == 1 ? this.rotations.get(indexPos) : (this.rotations.get(indexPos)+180)%360);
-        rushTo(this.positions.get(indexPos));
-        indexPos += sensPos;
-        if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
+      int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? 0 : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
+      if (indexPos == 0) {
+        rot = abs(180+rot)%360;
       }
+
+      this.rotate((rot));
+      if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270.0) {
+        radarAngle = (270) + degrees(m_ennemy.getRotation());
+      } else {
+        radarAngle = (90) + degrees(m_ennemy.getRotation());
+      }
+      rushTo(this.positions.get(indexPos));
+      indexPos += sensPos;
+      if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
     }
   }
 
   public void detectObstacle () {
-    if (radarAngle <= 60 + m_ennemy.getRotation()) {
-      radarSens = 1;
-    } else if (radarAngle >= 120 + m_ennemy.getRotation()) {
-      radarSens = -1;
+    if (degrees(m_ennemy.getRotation()) != 90.0 && degrees(m_ennemy.getRotation()) != 270) {
+      if (radarAngle <= 60 + degrees(m_ennemy.getRotation())) {
+        radarSens = 5;
+      } else if (radarAngle >= 120 + degrees(m_ennemy.getRotation())) {
+        radarSens = -5;
+      }
+    }
+    if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270) {
+      if (radarAngle <= 240 + degrees(m_ennemy.getRotation())) {
+        radarSens = 5;
+      } else if (radarAngle >= 300 + degrees(m_ennemy.getRotation())) {
+        radarSens = -5;
+      }
     }
 
     float x = this.m_ennemy.getX();
@@ -67,12 +89,9 @@ class Ennemy extends Entity {
 
     radarAngle = radarAngle + radarSens;
 
-    stroke(255);
-    line(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)));
-
     FBody b = m_world.raycastOne(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)), new FRaycastResult(), false);
 
-    if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject()) {
+    if ((b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject() && player.getPossed() == false)|| (m_ennemy.isTouchingBody(player.getObject()) && player.getPossed() == false)) {
       player.setIsAlive(false);
     }
   }
@@ -85,26 +104,26 @@ class Ennemy extends Entity {
 
   public void rushing () {
     if ( this.coordToRush.getX()-this.m_ennemy.getX() < -10 ) {
-      if (this.force.getX() != -50)
+      if (this.force.getX() != -speed)
         cptChangeDirection++;
-      this.setForceX(-50);
+      this.setForceX(-speed);
     } else {
       if (this.coordToRush.getX()-this.m_ennemy.getX() > 10) {
-        if (this.force.getX() != 50)
+        if (this.force.getX() != speed)
           cptChangeDirection++;
-        this.setForceX(50);
+        this.setForceX(speed);
       } else
         this.setForceX(0);
     }
     if ( this.coordToRush.getY()-this.m_ennemy.getY() < -10) {
-      if (this.force.getY() != -50)
+      if (this.force.getY() != -speed)
         cptChangeDirection++;
-      this.setForceY(-50);
+      this.setForceY(-speed);
     } else {
       if (this.coordToRush.getY()-this.m_ennemy.getY() > 10) {
-        if (this.force.getY() != 50)
+        if (this.force.getY() != speed)
           cptChangeDirection++;
-        this.setForceY(50);
+        this.setForceY(speed);
       } else
         this.setForceY(0);
     }
@@ -130,12 +149,11 @@ class Ennemy extends Entity {
 
   // Change velocity
   public void updateForce () {
-    println("Print velocity:\n x --> " + this.force.getX()+"\n y --> " + this.force.getY());
     this.m_ennemy.setVelocity(this.force.getX(), this.force.getY());
   }
 
 
   public void rotate (int degres) {
-    this.m_ennemy.setRotation(degres);
+    this.m_ennemy.setRotation(radians(degres));
   }
 }

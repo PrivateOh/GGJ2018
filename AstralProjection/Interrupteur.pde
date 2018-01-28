@@ -15,7 +15,6 @@ class Interrupteur extends Obstacle {
       } else {
         doorLinked.setCoord(new Coord(doorLinked.getCoord().getX()+(0.5*coeffX), doorLinked.getCoord().getY()));
       }
-      doorLinked.getObstacle().setDrawable(false);
       doorLinked.drawObstacle();
       isOpen = true;
     }

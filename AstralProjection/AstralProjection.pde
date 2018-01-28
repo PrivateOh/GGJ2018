@@ -18,7 +18,7 @@ public int COEFF_Y;
 public static final int COLOR_BK = 0;
 public static final int COLOR_WH = 255;
 public static final int COLOR_GR = 145;
-public FPoly endLevel;
+public FBox endLevel;
 public Player player = null;
 public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
@@ -44,7 +44,7 @@ void setup() {
   this.m_walls = new ArrayList<Wall>();
   this.m_obstacles = new ArrayList<Obstacle>();
   this.initWorld();
-  this.loadLevel(1);
+  this.loadLevel(currentLevel);
 }
 
 void draw() {
@@ -56,10 +56,7 @@ void draw() {
   }
   this.m_world.step();
   this.m_world.draw();
-  if (this.player != null) {
-    //this.player.detectObstacle();
-    this.player.draw();
-  }
+
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
     ennemy.draw();
@@ -74,14 +71,15 @@ void draw() {
   }
   drawCursor();
   if (currentLevel == 1) {
-    fill(0);
-    text("Click on item in your \naction range to posses them", caseIntoCoord(F, 3).getX(), caseIntoCoord(H, 3-0.5).getY());
     fill(255);
-    text("Click on the floor in your \naction range to quit the item", caseIntoCoord(F, 5).getX(), caseIntoCoord(H, 5-0.5).getY());
-    fill(0);
-    text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
-    fill(255);
-    text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
+    text("Click on a furniture item \nin your action range \nto posses it", caseIntoCoord(G,5).getX(), caseIntoCoord(G, 5).getY());
+    text("Click on the floor in your \naction range to exit the furniture item", caseIntoCoord(L, 5).getX(), caseIntoCoord(L, 5).getY());
+    text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(Q, 6).getX(), caseIntoCoord(Q, 6).getY());
+    text("Move with ZQSD", caseIntoCoord(G, 8).getX(), caseIntoCoord(G, 8).getY());
+    text("Hide from the ghosts while in a furniture item", caseIntoCoord(S, 13).getX(), caseIntoCoord(S, 13).getY());
+  }
+  if (this.player != null) {
+    this.player.draw();
   }
 }
 
