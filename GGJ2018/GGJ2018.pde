@@ -56,10 +56,7 @@ void draw() {
   }
   this.m_world.step();
   this.m_world.draw();
-  if (this.player != null) {
-    //this.player.detectObstacle();
-    this.player.draw();
-  }
+
   for (Ennemy ennemy : m_ennemys) {
     ennemy.detectObstacle();
     ennemy.draw();
@@ -82,7 +79,10 @@ void draw() {
     text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
     fill(255);
     text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
-    text("Hide from the ghosts in the items", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z,16).getY());
+    text("Hide from the ghosts in the items", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z, 16).getY());
+  }
+  if (this.player != null) {
+    this.player.draw();
   }
 }
 

@@ -37,6 +37,10 @@ class Player  extends Entity { //<>//
     this.isAlive = a;
   }
 
+  public boolean getPossed () {
+    return this.possed;
+  }
+
   public void setForceX (float x) {
     this.force.setX(x);
   }
@@ -74,8 +78,9 @@ class Player  extends Entity { //<>//
       player.setDrawable(false);
     noFill();
     stroke(100);
-      ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
-   
+    ellipse(this.player.getX(), this.player.getY(), rushRange, rushRange);
+    
+
 
     if (this.isRushing) {
       rushing();
