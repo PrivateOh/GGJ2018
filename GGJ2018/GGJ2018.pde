@@ -72,13 +72,11 @@ void draw() {
   drawCursor();
   if (currentLevel == 1) {
     fill(255);
-    text("Click on a furniture item in your \naction range to posses it", caseIntoCoord(I, 4-0.2).getX(), caseIntoCoord(J, 4-0.2).getY());
-    text("Click on the floor in your \naction range to exit the furniture item", caseIntoCoord(F, 5).getX(), caseIntoCoord(H, 5-0.5).getY());
-    fill(0);
-    text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
-    fill(255);
-    text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
-    text("Hide from the ghosts while in a furniture item", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z, 16).getY());
+    text("Click on a furniture item \nin your action range \nto posses it", caseIntoCoord(G,5).getX(), caseIntoCoord(G, 5).getY());
+    text("Click on the floor in your \naction range to exit the furniture item", caseIntoCoord(L, 5).getX(), caseIntoCoord(L, 5).getY());
+    text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(Q, 6).getX(), caseIntoCoord(Q, 6).getY());
+    text("Move with ZQSD", caseIntoCoord(G, 8).getX(), caseIntoCoord(G, 8).getY());
+    text("Hide from the ghosts while in a furniture item", caseIntoCoord(S, 13).getX(), caseIntoCoord(S, 13).getY());
   }
   if (this.player != null) {
     this.player.draw();

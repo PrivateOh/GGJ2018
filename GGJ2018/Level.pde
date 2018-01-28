@@ -45,7 +45,7 @@ private void defineLevel1() {
   rotations.add(270);
   rotations.add(180);
   rotations.add(0);
-  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 100,0, coords, rotations, "/data/textures/enemy.png"));
+  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 100, 0, coords, rotations, "/data/textures/enemy.png"));
 
   //Wall
   //Horizontaux
@@ -87,12 +87,12 @@ private void defineLevel1() {
   }
 }
 private void defineLevel2() {
-  this.player = new Player(caseIntoCoord(C, 4), 1, 20);
+  this.player = new Player(caseIntoCoord(C, 9), 1, 20);
 
   //Enemy 1
   ArrayList<Coord> coordsEnemy = new ArrayList<Coord>();
-  coordsEnemy.add(caseIntoCoord(G, 6));
-  coordsEnemy.add(caseIntoCoord(G, 4));
+  coordsEnemy.add(caseIntoCoord(D, 6));
+  coordsEnemy.add(caseIntoCoord(D, 4));
   coordsEnemy.add(caseIntoCoord(R, 4));
   coordsEnemy.add(caseIntoCoord(R, 8));
   coordsEnemy.add(caseIntoCoord(D, 8));
@@ -103,10 +103,10 @@ private void defineLevel2() {
   rotationsEnemy.add(180);
   rotationsEnemy.add(270);
   rotationsEnemy.add(90);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
-  
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100, 0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
+
   //Enemy 2
-  
+
   coordsEnemy  = new ArrayList<Coord>();
   coordsEnemy.add(caseIntoCoord(AL, 4));
   coordsEnemy.add(caseIntoCoord(T, 4));
@@ -118,7 +118,7 @@ private void defineLevel2() {
   rotationsEnemy.add(180);
   rotationsEnemy.add(90);
   rotationsEnemy.add(270);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100, 0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
 
   //Enemy 3
   coordsEnemy = new ArrayList<Coord>();
@@ -140,19 +140,30 @@ private void defineLevel2() {
   rotationsEnemy.add(270);
   rotationsEnemy.add(0);
   rotationsEnemy.add(180);
-  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100,0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
+  this.m_ennemys.add(new Ennemy(coordsEnemy.get(0), 1, 20, 100, 0, coordsEnemy, rotationsEnemy, "/data/textures/enemy.png"));
 
   //Wall
   //Horizontaux
   this.m_walls.add(new Wall(caseIntoCoord(B, 2), caseIntoCoord(AP, 3)));
   this.m_walls.add(new Wall(caseIntoCoord(B, 18), caseIntoCoord(AP, 19)));
   this.m_walls.add(new Wall(caseIntoCoord(C, 10), caseIntoCoord(AJ, 11)));
-  this.m_walls.add(new Wall(caseIntoCoord(AL, 10), caseIntoCoord(AO, 11)));
+  this.m_walls.add(new Wall(caseIntoCoord(AK, 10), caseIntoCoord(AO, 11)));
   this.m_walls.add(new Wall(caseIntoCoord(V, 6), caseIntoCoord(AO, 7)));
+  this.m_walls.add(new Wall(caseIntoCoord(E, 6), caseIntoCoord(R, 7)));
   //Verticaux
   this.m_walls.add(new Wall(caseIntoCoord(B, 3), caseIntoCoord(C, 18)));
   this.m_walls.add(new Wall(caseIntoCoord(AO, 3), caseIntoCoord(AP, 18)));
   this.m_walls.add(new Wall(caseIntoCoord(AG, 11), caseIntoCoord(AH, 16)));
+
+  //Obstacles
+  this.m_obstacles.add(new Obstacle("table", caseIntoCoord(K, 3), 0));
+  this.m_obstacles.add(new Obstacle("box", caseIntoCoord(Z, 5), 0));
+  this.m_obstacles.add(new Obstacle("chest", caseIntoCoord(AH, 3), 0));
+  this.m_obstacles.add(new Obstacle("box", caseIntoCoord(AC, 9), 0));
+  this.m_obstacles.add(new Obstacle("table", caseIntoCoord(AK, 7), 0));
+
+  this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(AJ, 10), 0));
+  this.m_obstacles.add(new Interrupteur(caseIntoCoord(AO-0.6, 4), 90, m_obstacles.get(m_obstacles.size()-1)));
 
   //Fin de niveau
   endLevel = new FBox(coeffX, coeffY);

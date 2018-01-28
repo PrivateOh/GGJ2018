@@ -15,7 +15,7 @@ class Ennemy extends Entity {
   private int indexPos = 1;
   private int sensPos = 1;
   private PImage texture;
-  private float speed = 100;
+  private float speed = 155;
 
   public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
     super(coord, id, false);
@@ -34,6 +34,7 @@ class Ennemy extends Entity {
     this.m_ennemy = new FCircle(size);
     this.m_ennemy.setPosition(x, y);
     this.m_ennemy.setGrabbable(false);
+    m_ennemy.setRotatable(false);
     //this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
     //this.m_ennemy.setRotation(60);
@@ -90,7 +91,7 @@ class Ennemy extends Entity {
 
     FBody b = m_world.raycastOne(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)), new FRaycastResult(), false);
 
-    if (b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject() && player.getPossed() == false) {
+    if ((b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject() && player.getPossed() == false)|| (m_ennemy.isTouchingBody(player.getObject()) && player.getPossed() == false)) {
       player.setIsAlive(false);
     }
   }
