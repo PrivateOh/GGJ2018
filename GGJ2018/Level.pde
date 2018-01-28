@@ -20,68 +20,36 @@ public void createLevel(int number) {
 
 private void defineLevel1() {
   //Player
-  this.player = new Player(caseIntoCoord(C, 4), 1, 20);
+  this.player = new Player(caseIntoCoord(G, 6.5), 1, 20);
 
   //Enemy
   ArrayList<Coord> coords = new ArrayList<Coord>();
   coords.add(caseIntoCoord(AF, 20));
-  coords.add(caseIntoCoord(AF, 15));
-  coords.add(caseIntoCoord(AA, 15));
-  coords.add(caseIntoCoord(AA, 20));
-  coords.add(caseIntoCoord(X, 20));
+
 
   ArrayList<Integer> rotations = new ArrayList<Integer>();
   rotations.add(0);
-  rotations.add(90);
-  rotations.add(180);
-  rotations.add(90);
-  rotations.add(270);
-  this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200, 0, coords, rotations));
+  //this.m_ennemys.add(new Ennemy(coords.get(0), 1, 20, 200, 0, coords, rotations));
   //Wall
   //Horizontaux
-  this.m_walls.add(new Wall(caseIntoCoord(B, 2), caseIntoCoord(M, 3)));
-  this.m_walls.add(new Wall(caseIntoCoord(B, 7), caseIntoCoord(I, 8)));
-  this.m_walls.add(new Wall(caseIntoCoord(J, 7), caseIntoCoord(M, 8)));
-  this.m_walls.add(new Wall(caseIntoCoord(L, 6), caseIntoCoord(S, 7)));
-  this.m_walls.add(new Wall(caseIntoCoord(J, 12), caseIntoCoord(O, 13)));
-  this.m_walls.add(new Wall(caseIntoCoord(L, 11), caseIntoCoord(O, 12)));
-  this.m_walls.add(new Wall(caseIntoCoord(P, 11), caseIntoCoord(S, 13)));
-  this.m_walls.add(new Wall(caseIntoCoord(P, 12), caseIntoCoord(S, 14)));
-  this.m_walls.add(new Wall(caseIntoCoord(S, 12), caseIntoCoord(V, 13)));
-  this.m_walls.add(new Wall(caseIntoCoord(H, 14), caseIntoCoord(T, 15)));
-  this.m_walls.add(new Wall(caseIntoCoord(U, 13), caseIntoCoord(AF, 14)));
-  this.m_walls.add(new Wall(caseIntoCoord(S, 23), caseIntoCoord(AI, 24)));
-  this.m_walls.add(new Wall(caseIntoCoord(AG, 13), caseIntoCoord(AI, 14)));
-  this.m_walls.add(new Wall(caseIntoCoord(AC, 8), caseIntoCoord(AF, 9)));
-  this.m_walls.add(new Wall(caseIntoCoord(AG, 8), caseIntoCoord(AJ, 9)));
-  this.m_walls.add(new Wall(caseIntoCoord(AC, 2), caseIntoCoord(AJ, 3)));
+  this.m_walls.add(new Wall(caseIntoCoord(G, 4), caseIntoCoord(AA, 5)));
+  this.m_walls.add(new Wall(caseIntoCoord(G, 14), caseIntoCoord(AA, 15)));
+  this.m_walls.add(new Wall(caseIntoCoord(G, 9), caseIntoCoord(Y, 10)));
+
   //Verticaux
-  this.m_walls.add(new Wall(caseIntoCoord(B, 3), caseIntoCoord(C, 7)));
-  this.m_walls.add(new Wall(caseIntoCoord(H, 8), caseIntoCoord(I, 14)));
-  this.m_walls.add(new Wall(caseIntoCoord(J, 8), caseIntoCoord(K, 12)));
-  this.m_walls.add(new Wall(caseIntoCoord(L, 3), caseIntoCoord(M, 6)));
-  this.m_walls.add(new Wall(caseIntoCoord(L, 8), caseIntoCoord(M, 11)));
-  this.m_walls.add(new Wall(caseIntoCoord(R, 7), caseIntoCoord(S, 11)));
-  this.m_walls.add(new Wall(caseIntoCoord(S, 15), caseIntoCoord(T, 23)));
-  this.m_walls.add(new Wall(caseIntoCoord(W, 14), caseIntoCoord(X, 18)));
-  this.m_walls.add(new Wall(caseIntoCoord(AC, 17), caseIntoCoord(AD, 23)));
-  this.m_walls.add(new Wall(caseIntoCoord(AH, 14), caseIntoCoord(AI, 23)));
-  this.m_walls.add(new Wall(caseIntoCoord(AE, 9), caseIntoCoord(AF, 13)));
-  this.m_walls.add(new Wall(caseIntoCoord(AG, 9), caseIntoCoord(AH, 13)));
-  this.m_walls.add(new Wall(caseIntoCoord(AC, 3), caseIntoCoord(AD, 8)));
-  this.m_walls.add(new Wall(caseIntoCoord(AI, 3), caseIntoCoord(AJ, 8)));
+  this.m_walls.add(new Wall(caseIntoCoord(F, 4), caseIntoCoord(G, 15)));
+  this.m_walls.add(new Wall(caseIntoCoord(AA, 4), caseIntoCoord(AB, 15)));
+  this.m_walls.add(new Wall(caseIntoCoord(V, 5), caseIntoCoord(W, 8)));
+  this.m_walls.add(new Wall(caseIntoCoord(M, 12), caseIntoCoord(N, 14)));
+  this.m_walls.add(new Wall(caseIntoCoord(S, 10), caseIntoCoord(T, 12)));
+
 
   //Obstacles
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(G, 3), 0));
-  this.m_obstacles.add(new Obstacle("coffre", caseIntoCoord(K, 5), 90));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V, 16), 90));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(V, 22), 0));
-  this.m_obstacles.add(new Obstacle("sink", caseIntoCoord(AC, 16), 0));
-  this.m_obstacles.add(new Obstacle("desk", caseIntoCoord(AD, 20), 270));
-  this.m_obstacles.add(new Obstacle("door", caseIntoCoord(R, 13), 90));
-  this.m_obstacles.add(new Interrupteur(caseIntoCoord(O, 7-0.2), 0, m_obstacles.get(m_obstacles.size()-1)));
-  this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(AF, 10), 0));
-  this.m_obstacles.add(new Interrupteur(caseIntoCoord(AF, 22+0.2), 180, m_obstacles.get(m_obstacles.size()-1)));
+  this.m_obstacles.add(new Obstacle("tonneau", caseIntoCoord(K, 5), 0));
+  this.m_obstacles.add(new Obstacle("tonneau", caseIntoCoord(K, 5), 180));
+  
+  this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(V, 8), 90));
+  this.m_obstacles.add(new Interrupteur(caseIntoCoord(V-0.6, 6), 90, m_obstacles.get(m_obstacles.size()-1)));
 
 
 

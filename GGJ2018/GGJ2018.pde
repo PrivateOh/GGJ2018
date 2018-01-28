@@ -24,7 +24,6 @@ public ArrayList<Ennemy> m_ennemys = null;
 public FLine m_line;
 public int currentLevel;
 public ArrayList<Wall> m_walls = null;
-public ArrayList<Floor> m_floors = null;
 public ArrayList<Obstacle> m_obstacles = null;
 
 // World
