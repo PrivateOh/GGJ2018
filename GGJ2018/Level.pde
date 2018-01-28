@@ -1,12 +1,15 @@
 public int resoX ;
 public int resoY ;
 public int coeffX, coeffY;
+public PImage texture_end;
 int A=1, B=2, C=3, D=4, E=5, F=6, G=7, H=8, I=9, J=10, K=11, L=12, M=13, N=14, O=15, P=16, Q=17, R=18, S=19, T=20, U=21, V=22, W=23, X=24, Y=25, Z=26, AA=27, AB=28, AC=29, AD=30, AE=31, AF=32, AG=33, AH=34, AI=35, AJ=36, AK=37, AL=38, AM=39, AN=40, AO=41, AP=42, AQ=43, AR=44, AS=45, AT=46, AU=47, AV=48;
 public void createLevel(int number) {
   resoX = width;
   resoY = height;
   coeffX = resoX/48;
   coeffY = resoY/27;
+
+  texture_end = loadImage("/data/textures/end.png");
   switch (number) {
   case 1:
     defineLevel1();
@@ -46,8 +49,10 @@ private void defineLevel1() {
 
   //Obstacles
   this.m_obstacles.add(new Obstacle("tonneau", caseIntoCoord(K, 5), 0));
-  this.m_obstacles.add(new Obstacle("tonneau", caseIntoCoord(K, 5), 180));
-  
+  this.m_obstacles.add(new Obstacle("table", caseIntoCoord(K, 8), 0));
+  this.m_obstacles.add(new Obstacle("box", caseIntoCoord(X, 8), 0));
+  this.m_obstacles.add(new Obstacle("chest", caseIntoCoord(W, 12), 0));
+
   this.m_obstacles.add(new Obstacle ("door", caseIntoCoord(V, 8), 90));
   this.m_obstacles.add(new Interrupteur(caseIntoCoord(V-0.6, 6), 90, m_obstacles.get(m_obstacles.size()-1)));
 
@@ -55,19 +60,13 @@ private void defineLevel1() {
 
 
   //Fin de niveau
-  endLevel = new FPoly();
-  Coord start = caseIntoCoord(AF-0.5, 2-0.5);
-  Coord end = caseIntoCoord(AG-0.5, 3-0.5);
-  endLevel.vertex(start.x, start.y);
-  endLevel.vertex(start.x, end.y);
-  endLevel.vertex(end.x, end.y);
-  endLevel.vertex(end.x, start.y);
-  endLevel.vertex(start.x, start.y);
+  endLevel = new FBox(coeffX, coeffY);
+  Coord start = caseIntoCoord(G, 12);
+  endLevel.setPosition(start.x, start.y);
   endLevel.setGrabbable(false);
   endLevel.setStatic(true);
-  endLevel.setStrokeColor(color(255, 23, 23));
-  endLevel.setFillColor(color(color(255, 23, 23)));
   endLevel.setRestitution(0);
+  endLevel.attachImage(texture_end);
   m_world.add(endLevel);
   for (Obstacle obs : m_obstacles) {
     obs.drawObstacle();
@@ -89,20 +88,15 @@ private void defineLevel2() {
   this.m_walls.add(new Wall(caseIntoCoord(AG, 11), caseIntoCoord(AH, 16)));
 
   //Fin de niveau
-  endLevel = new FPoly();
-  Coord start = caseIntoCoord(B-0.5, 14);
-  Coord end = caseIntoCoord(C-0.5, 15);
-  endLevel.vertex(start.x, start.y);
-  endLevel.vertex(start.x, end.y);
-  endLevel.vertex(end.x, end.y);
-  endLevel.vertex(end.x, start.y);
-  endLevel.vertex(start.x, start.y);
+  endLevel = new FBox(coeffX, coeffY);
+  Coord start = caseIntoCoord(C, 14);
+  endLevel.setPosition(start.x, start.y);
   endLevel.setGrabbable(false);
   endLevel.setStatic(true);
-  endLevel.setStrokeColor(color(255, 23, 23));
-  endLevel.setFillColor(color(color(255, 23, 23)));
   endLevel.setRestitution(0);
+  endLevel.attachImage(texture_end);
   m_world.add(endLevel);
+
   for (Obstacle obs : m_obstacles) {
     obs.drawObstacle();
   }
