@@ -71,15 +71,14 @@ void draw() {
   }
   drawCursor();
   if (currentLevel == 1) {
-    fill(0);
-    text("Click on item in your \naction range to posses them", caseIntoCoord(F, 3).getX(), caseIntoCoord(H, 3-0.5).getY());
     fill(255);
-    text("Click on the floor in your \naction range to quit the item", caseIntoCoord(F, 5).getX(), caseIntoCoord(H, 5-0.5).getY());
+    text("Click on a furniture item in your \naction range to posses it", caseIntoCoord(I, 4-0.2).getX(), caseIntoCoord(J, 4-0.2).getY());
+    text("Click on the floor in your \naction range to exit the furniture item", caseIntoCoord(F, 5).getX(), caseIntoCoord(H, 5-0.5).getY());
     fill(0);
     text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(N, 7).getX(), caseIntoCoord(N, 7-0.5).getY());
     fill(255);
     text("Move with ZQSD", caseIntoCoord(C, 9).getX(), caseIntoCoord(C, 9).getY());
-    text("Hide from the ghosts in the items", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z, 16).getY());
+    text("Hide from the ghosts while in a furniture item", caseIntoCoord(Z, 16).getX(), caseIntoCoord(Z, 16).getY());
   }
   if (this.player != null) {
     this.player.draw();
