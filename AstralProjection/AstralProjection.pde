@@ -37,7 +37,7 @@ void setup() {
 
   // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
 
-  currentLevel = 4;
+  currentLevel = 1;
   Fisica.init(this);
   noCursor();
   this.m_ennemys = new ArrayList<Ennemy>();
