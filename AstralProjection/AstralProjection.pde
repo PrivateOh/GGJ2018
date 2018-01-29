@@ -57,8 +57,6 @@ void setup() {
 
 void draw() {
   background(COLOR_BK);
-
-  stroke(255);
   if (!this.player.getIsAlive()) {
     loadLevel(currentLevel);
   }

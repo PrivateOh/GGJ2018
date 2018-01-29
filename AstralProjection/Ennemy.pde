@@ -16,8 +16,8 @@ class Ennemy extends Entity {
   private int sensPos = 1;
   private PImage texture;
   private float speed = 155;
-
-  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath) {
+  private boolean isMoving;
+  public Ennemy(Coord coord, int id, float size, float detectRange, float rotate, ArrayList<Coord> positions, ArrayList<Integer> rotations, String imgPath,boolean isMoving) {
     super(coord, id, false);
 
     // Coords
@@ -27,6 +27,8 @@ class Ennemy extends Entity {
 
     this.positions = positions;
     this.rotations = rotations;
+    
+    this.isMoving = isMoving;
 
     this.force = new Coord(0, 0);
     this.coordToRush = new Coord (0, 0);
@@ -46,23 +48,26 @@ class Ennemy extends Entity {
   }
 
   public void draw() {
-    if (this.isRushing) {
-      this.rushing();
-    } else {
-      int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? 0 : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
-      if (indexPos == 0) {
-        rot = abs(180+rot)%360;
-      }
-
-      this.rotate((rot));
-      if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270.0) {
-        radarAngle = (270) + degrees(m_ennemy.getRotation());
+    if (isMoving)
+    {
+      if (this.isRushing) {
+        this.rushing();
       } else {
-        radarAngle = (90) + degrees(m_ennemy.getRotation());
+        int rot = sensPos == 1 ? this.rotations.get(indexPos==0 ? 0 : indexPos-1) : (this.rotations.get(indexPos)+180)%360;
+        if (indexPos == 0) {
+          rot = abs(180+rot)%360;
+        }
+
+        this.rotate((rot));
+        if (degrees(m_ennemy.getRotation()) == 90.0 || degrees(m_ennemy.getRotation()) == 270.0) {
+          radarAngle = (270) + degrees(m_ennemy.getRotation());
+        } else {
+          radarAngle = (90) + degrees(m_ennemy.getRotation());
+        }
+        rushTo(this.positions.get(indexPos));
+        indexPos += sensPos;
+        if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
       }
-      rushTo(this.positions.get(indexPos));
-      indexPos += sensPos;
-      if (indexPos == this.positions.size()-1 || indexPos==0) sensPos = -1*sensPos;
     }
   }
 
@@ -102,24 +107,24 @@ class Ennemy extends Entity {
   }
 
   public void rushing () {
-    if ( this.coordToRush.getX()-this.m_ennemy.getX() < -10 ) {
+    if ( this.coordToRush.getX()-this.m_ennemy.getX() < -2 ) {
       if (this.force.getX() != -speed)
         cptChangeDirection++;
       this.setForceX(-speed);
     } else {
-      if (this.coordToRush.getX()-this.m_ennemy.getX() > 10) {
+      if (this.coordToRush.getX()-this.m_ennemy.getX() > 2) {
         if (this.force.getX() != speed)
           cptChangeDirection++;
         this.setForceX(speed);
       } else
         this.setForceX(0);
     }
-    if ( this.coordToRush.getY()-this.m_ennemy.getY() < -10) {
+    if ( this.coordToRush.getY()-this.m_ennemy.getY() < -2) {
       if (this.force.getY() != -speed)
         cptChangeDirection++;
       this.setForceY(-speed);
     } else {
-      if (this.coordToRush.getY()-this.m_ennemy.getY() > 10) {
+      if (this.coordToRush.getY()-this.m_ennemy.getY() > 2) {
         if (this.force.getY() != speed)
           cptChangeDirection++;
         this.setForceY(speed);
