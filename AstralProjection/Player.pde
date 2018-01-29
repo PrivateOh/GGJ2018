@@ -199,6 +199,7 @@ class Player  extends Entity { //<>//
         this.rushTo(new Coord(mouseX, mouseY));
       }
       if (this.isObject && fb != null) {
+        suckUp.play();
         fb.setSensor(true);
         obstaclePrec = fb;
       }

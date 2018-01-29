@@ -9,6 +9,7 @@ class Interrupteur extends Obstacle {
 
   public void openDoor () {
     if (!isOpen) {
+      doorOpen.play();
       doorLinked.setRotation(doorLinked.getRotation()+90);
       if (doorLinked.getRotation() == 0 || doorLinked.getRotation() == 180) {
         doorLinked.setCoord(new Coord(doorLinked.getCoord().getX(), doorLinked.getCoord().getY()+(0.5*coeffY)));

@@ -11,7 +11,8 @@
 // faire disparaitre le cercle
 // Re-click ejecter de l'objet
 
-import fisica.*;
+import fisica.*;   
+import processing.sound.*;
 
 public int COEFF_X;
 public int COEFF_Y;
@@ -26,6 +27,10 @@ public int currentLevel;
 public ArrayList<Wall> m_walls = null;
 public ArrayList<Obstacle> m_obstacles = null;
 
+private SoundFile ambianceSound;
+private SoundFile doorOpen;
+private SoundFile suckUp;
+private SoundFile deadSound;
 // World
 public FWorld m_world;
 
@@ -34,8 +39,11 @@ void setup() {
   smooth();
   COEFF_X = width/40;
   COEFF_Y = height/27;
-
-  // this.soundAbsorb = new SoundFile(this, "/data/sounds/vomit.mp3");
+  this.ambianceSound = new SoundFile(this, sketchPath("/data/sounds/ambiance.mp3"));
+  this.doorOpen = new SoundFile(this, sketchPath("/data/sounds/door_open.mp3"));
+  this.suckUp = new SoundFile(this, sketchPath("/data/sounds/suck_up.mp3"));
+  this.deadSound =  new SoundFile(this, sketchPath("/data/sounds/dead.mp3"));
+  this.ambianceSound.loop();
 
   currentLevel = 1;
   Fisica.init(this);
@@ -72,7 +80,7 @@ void draw() {
   drawCursor();
   if (currentLevel == 1) {
     fill(255);
-    text("Click on a furniture item \nin your action range \nto posses it", caseIntoCoord(G,5).getX(), caseIntoCoord(G, 5).getY());
+    text("Click on a furniture item \nin your action range \nto posses it", caseIntoCoord(G, 5).getX(), caseIntoCoord(G, 5).getY());
     text("Click on the floor in your \naction range to exit the furniture item", caseIntoCoord(L, 5).getX(), caseIntoCoord(L, 5).getY());
     text("Press E when you posses \nswitches to unlock doors", caseIntoCoord(Q, 6).getX(), caseIntoCoord(Q, 6).getY());
     text("Move with ZQSD", caseIntoCoord(G, 8).getX(), caseIntoCoord(G, 8).getY());

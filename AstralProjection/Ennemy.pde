@@ -35,9 +35,7 @@ class Ennemy extends Entity {
     this.m_ennemy.setPosition(x, y);
     this.m_ennemy.setGrabbable(false);
     m_ennemy.setRotatable(false);
-    //this.m_ennemy.setStatic(true);
     this.m_ennemy.setGroupIndex(0);
-    //this.m_ennemy.setRotation(60);
     this.rotate((int)rotate);
     radarAngle = 90 + m_ennemy.getRotation();
 
@@ -92,6 +90,7 @@ class Ennemy extends Entity {
     FBody b = m_world.raycastOne(x, y, x+detectRange*sin(radians(90-radarAngle)), y-detectRange*sin(radians(radarAngle)), new FRaycastResult(), false);
 
     if ((b != null && abs(sqrt(pow(b.getX(), 2)+pow(b.getY(), 2))-sqrt(pow(x, 2)+pow(y, 2)))<this.detectRange && b == player.getObject() && player.getPossed() == false)|| (m_ennemy.isTouchingBody(player.getObject()) && player.getPossed() == false)) {
+      deadSound.play();
       player.setIsAlive(false);
     }
   }
